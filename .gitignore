@@ -1,0 +1,55 @@
+# ===============================
+# Node / Parcel / Surge Project
+# ===============================
+
+# Dependency directories
+node_modules/
+.pnp/
+.pnp.js
+
+# Parcel cache
+.cache/
+.parcel-cache/
+
+# Build output
+dist/
+build/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Editor folders and files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+ehthumbs.db
+Icon?
+Desktop.ini
+
+# Surge temporary files
+.surgeignore
+
+# GitHub Actions workflow temp files
+.github/workflows/*.tmp
+
+# Optional: lock files (if you use only one package manager, you can ignore others)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
