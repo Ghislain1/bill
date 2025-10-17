@@ -1,8 +1,15 @@
+body {
+    position: relative;
+}
+
+
 body,
 p {
     font-family: 'Montserrat', cursive;
     font-weight: 300;
 }
+
+
 
 h1,
 h2,
@@ -12,5 +19,70 @@ h5,
 h6,
 .font-alt {
     font-family: 'Oleo Script Swah Caps', cursive;
+}
+
+.bg-overlay {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(51, 51, 51, 0.9);
+    position: absolute;
+    top: 0;
+}
+
+nav {
+    -webkit-transition: 0.7s ease-in-out;
+    -o-transition: 0.7s ease-in-out;
+    transition: 0.7s ease-in-out;
+}
+
+a .text-white:hover,
+a.text-white:hover {
+    color: #dc3545 !important;
+    text-decoration: none;
+}
+
+section {
+    padding: 140px 0;
+}
+
+/* Position */
+.d-relative {
+    position: relative;
+}
+
+/* ==== START: Navigation ==== */
+.navbar.navbar-dark button:hover,
+.navbar.navbar-dark button:focus,
+.navbar.navbar-dark .nav-link:hover {
     color: blueviolet;
+
+}
+
+.navbar-nav .badge {
+    position: absolute;
+    left: 25px;
+    bottom: 25px;
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+}
+
+.navbar-nav .icon-basket {
+    line-height: 0.8;
+    font-size: 1.5em;
+}
+
+.navbar.bg-white .navbar-nav .nav-link,
+.navbar.bg-white a,
+.navbar.bg-white button,
+.navbar.bg-white a:hover {
+    color: #333;
+}
+
+.navbar.bg-white button {
+    border-color: rgba(51, 51, 51, 0.6);
+}
+
+.navbar .navbar-nav .nav-link.active {
+    color: #dc3545;
+
 }
