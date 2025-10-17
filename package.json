@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "live-server": "^1.2.2"
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.8",
+    "live-server": "^1.2.0"
   }
 }
