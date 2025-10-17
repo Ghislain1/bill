@@ -1,0 +1,4 @@
+# These are supported funding model platforms  
+on: [push, pull_request] 
+custom: https://paypal.me/zgivan
+open_collective: vvvebjs
