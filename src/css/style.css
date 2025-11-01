@@ -2,14 +2,11 @@ body {
     position: relative;
 }
 
-
 body,
 p {
     font-family: 'Montserrat', cursive;
     font-weight: 300;
 }
-
-
 
 h1,
 h2,
@@ -54,16 +51,12 @@ section {
 .navbar.navbar-dark button:hover,
 .navbar.navbar-dark button:focus,
 .navbar.navbar-dark .nav-link:hover {
-    color: blueviolet;
+    color: rgb(10, 153, 74);
 
 }
 
-.navbar-nav .badge {
-    position: absolute;
-    left: 25px;
-    bottom: 25px;
-    padding-right: 0.5em;
-    padding-left: 0.5em;
+img {
+    background-color: transparent rgb(10, 153, 74);
 }
 
 .navbar-nav .icon-basket {
@@ -83,6 +76,40 @@ section {
 }
 
 .navbar .navbar-nav .nav-link.active {
-    color: #dc3545;
+    color: #14a740;
+}
+
+/* ==== END: Navigation ==== */
+
+/* ==== START: Home(hero) ==== */
+.hero-bg {
+    background: url('../img/bg-hero.png') 50% 0 fixed no-repeat;
+    height: 100vh;
+    background-size: cover;
+}
+
+.btn-round {
+    border-radius: 30px;
+}
+
+#home .container {
+    height: 100%;
+}
+
+#home .row {
+    height: 80%;
 
 }
+
+/* ==== END: Home(hero) ==== */
+
+
+/* ==== START: About-Us ====*/
+.img-bg {
+    position: absolute;
+    overflow: hidden;
+    right: 0px;
+    width: 50vw;
+}
+
+/* ==== END: About-Us ====*/
