@@ -19,10 +19,10 @@ $(document).ready(function () {
         if (this.hash !== "") {
             event.preventDefault();
             var hash = this.hash;
-            // Wir selectieren was wir animieren wollen: den HTML und Body Tag,   lang(animation dauert 1500ms)
+            // Wir selectieren was wir animieren wollen: den HTML und Body Tag,   lang(animation dauert 1100ms)
             $('html, body').animate({
                 scrollTop: $(hash).offset().top
-            }, 1500, function () {
+            }, 1100, function () {
                 window.location.hash = hash;
             });
         }

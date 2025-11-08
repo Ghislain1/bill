@@ -19,6 +19,10 @@
   - js: add class d-inline in back to top button
 - Usage of smooth Scrool
   - This allow the website uerbgang der seiteninterne links verfeinerner
-  - html:
+  - html: alle anchor tag a muss mit smooth class erweitern werden
   - js: 
+- Function of Scrol Spy
+  - That is a function of bootstrop
+  - Nav soll wiessen wo wir gerade sind 
+    - html: spy activieren ==> 
 
