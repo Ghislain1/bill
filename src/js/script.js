@@ -13,33 +13,23 @@ $(window).on('scroll', function () {
     }
 });
 
-// Smooth scroll for back to top button
+// (ANIMATION)Smooth scroll for back to top button
 $(document).ready(function () {
     $('a.smooth').on('click', function (event) {
         if (this.hash !== "") {
             event.preventDefault();
             var hash = this.hash;
+            // Wir selectieren was wir animieren wollen: den HTML und Body Tag,   lang(animation dauert 1500ms)
             $('html, body').animate({
                 scrollTop: $(hash).offset().top
-            }, 800, function () {
+            }, 1500, function () {
                 window.location.hash = hash;
             });
         }
     });
 });
 
-// Start Klassenaenderung
-$(window).on('scroll', function () {
-    if ($(window).scrollTop() > 50) {
-        // Navigation Hintergrundfarbe aendern
-        $('nav.navbar').addClass('bg-white', 700);
 
-    }
-    else {
-        $('nav.navbar').removeClass('bg-white', 700);
-    }
-});
-// Ende Klassenaenderung
 
 // Start Cookies Banner
 
