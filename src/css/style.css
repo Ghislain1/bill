@@ -34,7 +34,7 @@ nav {
 
 a .text-white:hover,
 a.text-white:hover {
-    color: #dc3545 !important;
+    color: rgb(10, 153, 74) !important;
     text-decoration: none;
 }
 

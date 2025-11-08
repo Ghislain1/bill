@@ -44,3 +44,11 @@ function acceptCookies() {
     cookieModal.hide();
 }
 // Ende Cookies Banner
+
+// Start Jahresanzeige im Footer
+$(document).ready(function () {
+    const currentYear = new Date().getFullYear();
+    $('#year').text(currentYear);
+});
+
+// Ende Jahresanzeige im Footer 

@@ -25,4 +25,5 @@
   - That is a function of bootstrop
   - Nav soll wiessen wo wir gerade sind 
     - html: spy activieren ==> 
+    - css: body  muss position relativ muss!!!
 
