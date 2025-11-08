@@ -32,16 +32,15 @@ $(document).ready(function () {
 
 
 // Start Cookies Banner
-
-if (!localStorage.getItem('Bill_Cookies')) {
-    var cookieModal = new bootstrap.Modal(document.getElementById('cookiesBannerModal'));
-    cookieModal.show();
+var cookiesBannerModal = new bootstrap.Modal(document.getElementById('cookiesBannerModal'));
+const key = 'Bill_Cookies_' + new Date().getMonth() + new Date().getFullYear();
+if (!localStorage.getItem(key)) {
+    cookiesBannerModal.show();
 }
 
 function acceptCookies() {
-    localStorage.setItem('Bill_Cookies', 'true');
-    var cookieModal = new bootstrap.Modal(document.getElementById('cookiesBannerModal'));
-    cookieModal.hide();
+    localStorage.setItem(key, 'true');
+    cookiesBannerModal.hide();
 }
 // Ende Cookies Banner
 
