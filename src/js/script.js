@@ -28,3 +28,15 @@ $(document).ready(function () {
     });
 });
 
+// Start Klassenaenderung
+$(window).on('scroll', function () {
+    if ($(window).scrollTop() > 50) {
+        // Navigation Hintergrundfarbe aendern
+        $('nav.navbar').addClass('bg-white', 700);
+
+    }
+    else {
+        $('nav.navbar').removeClass('bg-white', 700);
+    }
+});
+// Ende Klassenaenderung

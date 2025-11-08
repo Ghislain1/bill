@@ -76,7 +76,13 @@ img {
 }
 
 .navbar .navbar-nav .nav-link.active {
-    color: #14a740;
+    color: rgba(25, 135, 84);
+}
+
+nav {
+    -webkit-transition: 0.7s ease-in-out;
+    -o-transition: 0.7s ease-in-out;
+    transition: 0.7s ease-in-out;
 }
 
 /* ==== END: Navigation ==== */

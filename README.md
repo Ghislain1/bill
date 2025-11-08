@@ -1,5 +1,5 @@
 # bill
-Vitrine page for bill compagny
+Vitrine page for bill compagny [here](https://bill-physio.netlify.app/)
 
 # Howtos
 
