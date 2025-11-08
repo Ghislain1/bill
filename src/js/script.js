@@ -40,3 +40,17 @@ $(window).on('scroll', function () {
     }
 });
 // Ende Klassenaenderung
+
+// Start Cookies Banner
+
+if (!localStorage.getItem('cookiesBannerModal')) {
+    var cookieModal = new bootstrap.Modal(document.getElementById('cookiesBannerModal'));
+    cookieModal.show();
+}
+
+function acceptCookies() {
+    localStorage.setItem('cookiesBannerModal', 'true');
+    var cookieModal = new bootstrap.Modal(document.getElementById('cookiesBannerModal'));
+    cookieModal.hide();
+}
+// Ende Cookies Banner

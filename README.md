@@ -19,3 +19,6 @@ Vitrine page for bill compagny [here](https://bill-physio.netlify.app/)
 - Build it.
 
 - Deploy it live automatically
+# Contribution
+- See  Dev.md  fil
+- 
