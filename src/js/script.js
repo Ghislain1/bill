@@ -33,13 +33,13 @@ $(document).ready(function () {
 
 // Start Cookies Banner
 
-if (!localStorage.getItem('cookiesBannerModal')) {
+if (!localStorage.getItem('Bill_Cookies')) {
     var cookieModal = new bootstrap.Modal(document.getElementById('cookiesBannerModal'));
     cookieModal.show();
 }
 
 function acceptCookies() {
-    localStorage.setItem('cookiesBannerModal', 'true');
+    localStorage.setItem('Bill_Cookies', 'true');
     var cookieModal = new bootstrap.Modal(document.getElementById('cookiesBannerModal'));
     cookieModal.hide();
 }
