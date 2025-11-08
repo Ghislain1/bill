@@ -13,5 +13,9 @@
 - 
 # Howtos
 - Add "Wir verwenden Cookies" in a html page
+- To add Back to Button in a html page
+  - html: anchor tag  with class btn btn-outline-success
+  - css: display:none : damit wird er bei starten nicht angezeigt
+  - js: 
 
 

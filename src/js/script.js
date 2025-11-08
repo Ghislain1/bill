@@ -1,6 +1,6 @@
 $(window).on('scroll', function () {
     // Custom jQuery code can go here
-    if ($(window).scrollTop() > 450) {
+    if ($(window).scrollTop() > 70) {
         // Code to execute every 50 pixels scrolled
         $('nav.navbar').addClass('bg-white');
 

@@ -142,3 +142,14 @@ nav {
 }
 
 /* ==== END: Angebote ====*/
+
+
+/* ==== START: Back to Top Button ====*/
+#back-to-top-button {
+    display: none;
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+}
+
+/* ==== END: Back to Top Button ====*/
