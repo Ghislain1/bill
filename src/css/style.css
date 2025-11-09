@@ -164,6 +164,7 @@ nav {
     position: fixed;
     bottom: 40px;
     right: 40px;
+    z-index: 99;
 }
 
 /* ==== END: Back to Top Button ====*/
