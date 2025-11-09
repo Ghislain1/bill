@@ -59,10 +59,10 @@
                             <a href="#angebote" class="nav-link smooth">Angebote</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#impression" class="nav-link smooth">Impression</a>
+                            <a href="#kontakt" class="nav-link smooth">Kontakt</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#kontakt" class="nav-link smooth">Kontakt</a>
+                            <a href="#impressum" class="nav-link smooth">Impressum</a>
                         </li>
                 </div>
         </nav>
@@ -74,7 +74,7 @@
         <div class="container">
             <div class="row justify-content-end align-items-center">
                 <div class="col-md-6 text-center text-md-right">
-                    <h1 class="text-success mb-4"> Bill-Psychotherapie </h1>
+                    <h1 data-aos="flip-left" class="text-success mb-4"> Bill-Psychotherapie </h1>
                     <p class="lead text-white"> Gemeinsam finden wir einen Weg zu mehr Lebensqualität. </p>
                     <a href="#ueber-uns" role="button" class="btn btn-outline-success btn-round btn-lg mt-2 smooth">
                         <small>
@@ -94,8 +94,8 @@
         </div>
         <div class="container">
             <div class="row">
-                <div data-aos="fade-right" class="col-lg-6">
-                    <h1 class="text-success mb-4">Wer sind wir?</h1>
+                <div class="col-lg-6">
+                    <h1 data-aos="flip-left" class="text-success mb-4">Wer sind wir?</h1>
                     <p> Wir sind eine Praxis für den Bereich
                         Physiotherapie </p>
                     <p> In unserer Praxis hat Ihre Gesundheit und
@@ -232,39 +232,13 @@
     </section>
     <!-- END: Angebote-->
 
-    <!-- START: Cookies Banner Modal -->
-    <div class="modal fade" id="cookiesBannerModal" tabindex="-1" aria-labelledby="cookiesBannerModalLabel"
-        role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title text-success ml-3" id="cookiesBannerModalLabel">Wir verwenden Cookies</h3>
-                    <button type="button" class="close mr-3" data-dismiss="modal" aria-label="Close">
-                        <span class="icon-close" aria-hidden="true"> </span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Wir verwenden Cookies, um Ihnen das beste Erlebnis auf unserer Website zu bieten. Durch die
-                        Nutzung unserer Website stimmen Sie der Verwendung von Cookies zu.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-success btn-round"
-                        data-dismiss="modal">Ablehnen</button>
-                    <button type="button" class="btn btn-success btn-round"
-                        onclick="acceptCookies()">Akzeptieren</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- END: Cookies Banner Modal -->
-
     <!-- START: Kontakt -->
     <section id="kontakt" class="d-relative">
 
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-10 text-center">
-                    <h1 data-aos="fade-in-up" class="text-success">Schön von euch zu lesen</h1>
+                    <h1 data-aos="flip-left" class="text-success">Schön von euch zu lesen</h1>
                 </div>
             </div>
             <form>
@@ -303,12 +277,59 @@
     </section>
     <!-- Ende: Kontakt -->
 
+    <!-- START: Impressum -->
+    <section id="impressum" class="d-relative">
+        <div class="bg-overlay"></div>
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-md-8 text-center">
+                    <h1 data-aos="flip-left" class="text-success mb-4">Impressum</h1>
+                    <p class="lead text-white"> Angaben gemäß § 5 TMG </p>
+                    <p class="text-white"> Bill &amp; Co. move </p>
+                    <p class="text-white"> Musterstraße 1 </p>
+                    <p class="text-white"> 12345 Musterstadt </p>
+
+                    <p class="text-white"> Kontakt: </p>
+                    <p class="text-white"> Telefon: +49 123 4567890 </p>
+                    <p class="text-white"> E-Mail: info@bill-co.de </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END: Impressum -->
+
 
     <!--START: Back to Top Button-->
     <a href="#home" class="btn btn-outline-success btn-round smooth" role="button" id="back-to-top-button">
         <span class="icon-arrow-up"> </span>
     </a>
     <!--END  Back to Top Button-->
+
+    <!-- START: Cookies Banner Modal -->
+    <div class="modal fade" id="cookiesBannerModal" tabindex="-1" aria-labelledby="cookiesBannerModalLabel"
+        role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title text-success ml-3" id="cookiesBannerModalLabel">Wir verwenden Cookies</h3>
+                    <button type="button" class="close mr-3" data-dismiss="modal" aria-label="Close">
+                        <span class="icon-close" aria-hidden="true"> </span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Wir verwenden Cookies, um Ihnen das beste Erlebnis auf unserer Website zu bieten. Durch die
+                        Nutzung unserer Website stimmen Sie der Verwendung von Cookies zu.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-success btn-round"
+                        data-dismiss="modal">Ablehnen</button>
+                    <button type="button" class="btn btn-success btn-round"
+                        onclick="acceptCookies()">Akzeptieren</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: Cookies Banner Modal -->
 
     <!-- START: Footer -->
     <footer>
