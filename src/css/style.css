@@ -47,6 +47,20 @@ section {
     position: relative;
 }
 
+/* ==== START: Bild Hovereffekte ==== */
+#angebote .row .col-md img {
+    filter: grayscale(60%);
+    -webkit-transition: filter 0.5s ease-in-out;
+    -o-transition: filter 0.5s ease-in-out;
+    transition: filter 0.5s ease-in-out;
+}
+
+#angebote .row .col-md img:hover {
+    filter: none;
+}
+
+/* ==== END: Bild Hovereffekte ==== */
+
 /* ==== START: Navigation ==== */
 .navbar.navbar-dark button:hover,
 .navbar.navbar-dark button:focus,
