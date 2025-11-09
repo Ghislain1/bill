@@ -1,5 +1,9 @@
 # bill
-
+## Requirements
+- FavIcon for title
+- Title
+- Log
+  
 # Frameworks or Library
 - Bootstarp for css
   
