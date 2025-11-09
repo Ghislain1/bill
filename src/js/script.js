@@ -51,3 +51,12 @@ $(document).ready(function () {
 });
 
 // Ende Jahresanzeige im Footer 
+
+// Start AOS Animation
+AOS.init({
+    duration: 1000,
+    easing: 'ease-out',
+    offset: 300,
+    disable: 'mobile'
+});
+// Ende AOS Animation

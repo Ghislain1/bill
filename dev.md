@@ -27,3 +27,12 @@
     - html: spy activieren ==> 
     - css: body  muss position relativ muss!!!
 
+# AOS
+- JS library animation, Animation for scroll
+- Animate on Scroll (AOS)
+- https://michalsnik.github.io/aos/
+- https://github.com/michalsnik/aos/tree/v2
+  ## Setup
+  - js: init() method setup
+  - css: 
+  - html: attribut data-aos="fade-left"
