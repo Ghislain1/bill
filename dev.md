@@ -40,3 +40,8 @@
   - js: init() method setup
   - css: 
   - html: attribut data-aos="fade-left"
+
+
+# Hosting
+## kinsta
+- 
