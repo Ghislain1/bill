@@ -1,5 +1,6 @@
 # bill
-Vitrine page for bill compagny [here](https://bill-physio.netlify.app/)
+- [x] Vitrine page for bill compagny [here - Netlify](https://bill-physio.netlify.app/)
+- [x] Vitrine page for bill compagny [here - Kinsta](https://bill-bs8bi.kinsta.page/)
 
 # Howtos
 
