@@ -73,6 +73,10 @@ img {
     background-color: transparent rgb(10, 153, 74);
 }
 
+.svg-bg {
+    background-color: transparent rgb(10, 153, 74);
+}
+
 .navbar-nav .icon-basket {
     line-height: 0.8;
     font-size: 1.5em;
