@@ -34,7 +34,7 @@
 <body data-spy="scroll" data-target=".navbar" data-offset="40">
     <!-- START: Navigation -->
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-0">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top py-0">
             <div class="container">
                 <a href="#home" class="navbar-brand font-alt smooth">
                     <img src="img/logo.svg" alt="Ghislain & Bill" class="svg-bg rounded-circle" width="200"
@@ -76,8 +76,9 @@
                     Your browser does not support the video tag.
                 </video>
                 <div class="col-md-6 text-center text-md-right">
-                    <h1 data-aos="flip-left" class="text-success mb-4"> Bill-Physio</h1>
-                    <p class="lead text-white"> Gemeinsam finden wir einen Weg zu mehr Lebensqualität. </p>
+                    <h1 data-aos="flip-left" class="text-success mb-4">Bill-Physio</h1>
+                    <p class="lead text-dark"> Das Team von Bill-Physio nimmt sich Zeit für Sie und Ihre Gesundheit.
+                        Individuelle Physiotherapie mit fachlicher Präzision und echter Menschenlichkeit.</p>
                     <a href="#ueber-uns" role="button" class="btn btn-outline-success btn-round btn-lg mt-2 smooth">
                         <small>
                             <span class="icon-arrow-down-circle pr-2">
@@ -243,19 +244,18 @@
 
     <!-- START: Kontakt -->
     <section id="kontakt" class="d-relative">
-
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-10 text-center">
                     <h1 data-aos="flip-left" class="text-success">Schön von euch zu lesen</h1>
                 </div>
             </div>
-            <form>
-                <div class="row">
+            <form class="needs-validation" novalidate>
+                <div class="form-row">
                     <div class="col-md-6 mb-4 pr-md-4 pl-md-4">
                         <div class="input-group input-group-lg">
                             <textarea class="form-control" name="nachricht" id="messageBody" placeholder="Nachricht..."
-                                rows="6"></textarea>
+                                rows="8" required></textarea>
                         </div>
                     </div>
 
@@ -264,13 +264,21 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text icon-user bg-success text-white"></span>
                             </div>
-                            <input type="text" class="form-control" id="name" placeholder="Vollstaengiger Name...">
+                            <input type="text" class="form-control" id="name" placeholder="Vollständiger  Name..."
+                                required>
                         </div>
                         <div class="input-group input-group-lg mb-4">
                             <div class="input-group-prepend">
                                 <span class="input-group-text icon-paper-plane bg-success text-white"></span>
                             </div>
-                            <input type="email" class="form-control" id="email" placeholder="Email...">
+                            <input type="email" class="form-control" id="email" placeholder="Email..." required>
+                        </div>
+                        <div class="input-group input-group-lg mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text icon-phone bg-success text-white"></span>
+                            </div>
+                            <input type="tel" pattern="^(\+49|0049|0)[1-9][0-9\s\-\/]{7,}$" class="form-control"
+                                id="telefon" placeholder="Telefon..." required>
                         </div>
                         <div class="text-center w-100">
                             <button id="sendMessageButton"
@@ -279,7 +287,20 @@
                             </button>
                         </div>
                     </div>
-
+                </div>
+                <div class="form-row">
+                    <div class="col-md-10 text-center">
+                        <input class="form-check-input text-center" type="checkbox" id="inlineCheckbox1" value=""
+                            required>
+                        <small class="text-muted"> Ich bin damit einverstanden, dass meine Daten zur Bearbeitung meiner
+                            Anfrage verwendet werden. </small>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <small class="text-muted"> Wir werden Ihre Daten niemals an Dritte weitergeben. </small>
+                    </div>
+                </div>
             </form>
 
         </div>
@@ -309,7 +330,6 @@
 
     <!-- START: Bewerbung -->
     <section id="bewerbung" class="d-relative">
-
         <div class="container">
             <div class="row justify-content-center mb-5">
                 <div class="col-md-8 text-center">
@@ -332,10 +352,7 @@
             </div>
         </div>
     </section>
-
     <!-- END: Bewerbung -->
-
-
     <!--START: Back to Top Button-->
     <a href="#home" class="btn btn-outline-success btn-round smooth" role="button" id="back-to-top-button">
         <span class="icon-arrow-up"> </span>
