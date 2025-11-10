@@ -107,10 +107,38 @@ nav {
 
 /* ==== START: Home(hero) ==== */
 .hero-bg {
-    background: url('../img/bg-hero.png') 50% 0 fixed no-repeat;
+    position: relative;
+    overflow: hidden;
     height: 100vh;
-    background-size: cover;
+}
 
+.hero-bg video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+@media (max-width: 767px) {
+    .hero-bg video {
+        display: none;
+    }
+}
+
+.hero-bg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('../img/bg-hero.png') 50% 0 fixed no-repeat;
+    z-index: 0;
 }
 
 .btn-round {
