@@ -10,7 +10,9 @@ $(window).on('scroll', function () {
     else {
         $('nav.navbar').removeClass('bg-white');
         $('#back-to-top-button').removeClass('d-inline');
+        $('nav.navbar').addClass('text-dark');
     }
+
 });
 
 // (ANIMATION)Smooth scroll for back to top button

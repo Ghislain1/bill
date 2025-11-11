@@ -77,11 +77,6 @@ img {
     background-color: transparent rgb(10, 153, 74);
 }
 
-.navbar-nav .icon-basket {
-    line-height: 0.8;
-    font-size: 1.5em;
-}
-
 .navbar.bg-white .navbar-nav .nav-link,
 .navbar.bg-white a,
 .navbar.bg-white button,
@@ -122,12 +117,6 @@ nav {
     height: 100%;
     object-fit: cover;
     z-index: 0;
-}
-
-@media (max-width: 767px) {
-    .hero-bg video {
-        display: none;
-    }
 }
 
 @media (max-width: 768px) {
