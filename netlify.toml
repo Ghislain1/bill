@@ -1,3 +1,0 @@
-[build]
-  command = "parcel build src/index.html --dist-dir dist --public-url ./"
-  publish = "dist"
