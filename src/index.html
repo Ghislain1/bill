@@ -253,7 +253,8 @@
                     <h1 data-aos="flip-left" class="text-success">Schön von euch zu lesen</h1>
                 </div>
             </div>
-            <form class="needs-validation" novalidate>
+            <form id="kontakt-form" method="POST" action="https://formsubmit.co/kontakt@bill-physio.de"
+                class="needs-validation" novalidate>
                 <div class="form-row">
                     <div class="col-md-6 mb-4 pr-md-4 pl-md-4">
                         <div class="input-group input-group-lg">
@@ -261,27 +262,27 @@
                                 rows="8" required></textarea>
                         </div>
                     </div>
-
                     <div class="col-md-6 mb-4 pr-md-4 pl-md-4">
                         <div class="input-group input-group-lg mb-4">
                             <div class="input-group-prepend">
                                 <span class="input-group-text icon-user bg-success text-white"></span>
                             </div>
-                            <input type="text" class="form-control" id="name" placeholder="Vollständiger  Name..."
-                                required>
+                            <input name="name" type="text" class="form-control" id="name"
+                                placeholder="Vollständiger  Name..." required>
                         </div>
                         <div class="input-group input-group-lg mb-4">
                             <div class="input-group-prepend">
                                 <span class="input-group-text icon-paper-plane bg-success text-white"></span>
                             </div>
-                            <input type="email" class="form-control" id="email" placeholder="Email..." required>
+                            <input name="email" type="email" class="form-control" id="email" placeholder="Email..."
+                                required>
                         </div>
                         <div class="input-group input-group-lg mb-4">
                             <div class="input-group-prepend">
                                 <span class="input-group-text icon-phone bg-success text-white"></span>
                             </div>
-                            <input type="tel" pattern="^(\+49|0049|0)[1-9][0-9\s\-\/]{7,}$" class="form-control"
-                                id="telefon" placeholder="Telefon..." required>
+                            <input name="tel" type="tel" pattern="^(\+49|0049|0)[1-9][0-9\s\-\/]{7,}$"
+                                class="form-control" id="telefon" placeholder="Telefon..." required>
                         </div>
                         <div class="text-center w-100">
                             <button id="sendMessageButton"
@@ -305,7 +306,6 @@
                     </div>
                 </div>
             </form>
-
         </div>
     </section>
     <!-- Ende: Kontakt -->

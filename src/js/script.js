@@ -81,3 +81,13 @@ AOS.init({
         });
     }, false);
 })();
+
+
+// Ende Form Validation
+window.addEventListener('load', function () {
+    const form = document.getElementById('kontakt-form');
+    if (form) {
+        form.reset();
+        form.classList.remove('was-validated');
+    }
+});
