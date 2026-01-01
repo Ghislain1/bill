@@ -167,6 +167,12 @@ nav {
     background-color: transparent;
 }
 
+#ueber-uns video {
+    border-radius: 1rem;
+    /* nach Geschmack anpassen */
+    overflow: hidden;
+}
+
 /* ==== END: About-Us ====*/
 
 
