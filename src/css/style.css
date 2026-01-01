@@ -216,8 +216,8 @@ input.form-control:hover {
 /* START: Floating Action Buttons */
 .fab-container {
     position: fixed;
-    bottom: 40px;
-    right: 100px;
+    bottom: 85px;
+    right: 40px;
     z-index: 99;
 }
 

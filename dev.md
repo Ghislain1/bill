@@ -51,7 +51,11 @@
 - Webmail Master :  weiterhin 
 - kontakt@bill-physio.de
 - BP011125.de
-- 
+- https://mein.ionos.de/home/products?origin=CC.NGH.DE&continue
+  
+## Deploy Now
+- Github  repro to deploy
+- npm run start
 
 
 # Formsubmit - Sending email to 

@@ -89,23 +89,23 @@ $("window").on('load', function () {
 }, false);
 // Ende Form Validation
 
-// Start: Floating buttons
+// Start: Floating Action buttons (FAB)
 $(document).ready(function () {
-  $('#mainFab').on('click', function () {
-    $('.fab-menu').toggleClass('d-none');
-    $(this).find('i').toggleClass('icon-plus icon-close');
-  });
+    $('#mainFab').on('click', function () {
+        $('.fab-menu').toggleClass('d-none');
+        $(this).find('i').toggleClass('icon-feed icon-close');
+    });
 
-  $('#fabAnfahrt').on('click', function () {
-    window.open('https://maps.google.com/?q=Traubenstra%C3%9Fe+16%2C+55545+Bad+Kreuznach', '_blank');
-  });
+    $('#fabAnfahrt').on('click', function () {
+        window.open('https://maps.google.com/?q=Traubenstra%C3%9Fe+16%2C+55545+Bad+Kreuznach', '_blank');
+    });
 
-  $('#fabEmail').on('click', function () {
-    window.location.href = 'mailto:kontakt@bill-physio.de';
-  });
+    $('#fabEmail').on('click', function () {
+        window.location.href = 'mailto:kontakt@bill-physio.de';
+    });
 
-  $('#fabTelefon').on('click', function () {
-    window.location.href = 'tel:+4967197029941';
-  });
+    $('#fabTelefon').on('click', function () {
+        window.location.href = 'tel:+4967197029941';
+    });
 });
-// Ende: Floating buttons
+// Ende: Floating Action buttons (FAB)
