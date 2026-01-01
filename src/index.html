@@ -122,7 +122,7 @@
                         verändern oder damit umzugehen. </p>
                     <p> Sich wohlfühlen ist ein Stück Lebensqualität! </p>
                     <p> Wir freuen uns sehr auf Sie!</p>
-                    <p class="text-uppercase text-muted mt-4">&mdash; Bill &amp; Co. move Team </p>
+                    <p class="text-uppercase text-muted mt-4">&mdash; Bill Physio Team </p>
                 </div>
             </div>
         </div>
@@ -248,6 +248,7 @@
     <!-- START: Kontakt -->
     <section id="kontakt" class="d-relative">
         <div class="container">
+            <input type="hidden" name="_next" value="https://bill-physio.de/#kontakt">
             <div class="row justify-content-center">
                 <div class="col-md-10 text-center">
                     <h1 data-aos="flip-left" class="text-success">Schön von euch zu lesen</h1>
@@ -322,12 +323,12 @@
                     <p class="text-white"> Traubenstraße 16</p>
                     <p class="text-white"> 55545 Bad Kreuznach </p>
                     <p class="text-white"> Kontakt: </p>
-                    <p class="text-white"> Tel. 0671 97029941 / Fax : 067197028459</p>
+                    <p class="text-white"> Tel. 0671 97029941 / Fax: 067197028459</p>
                     <p class="text-white"> E-Mail: kontakt@bill-physio.de </p>
-                    <p class="text-white"> Steuernummer : 0601431380 </p>
-                    <p class="text-white">Berufsbezeichnung : Physiotherapeut</p>
+                    <p class="text-white"> Steuernummer: 0601431380 </p>
+                    <p class="text-white">Berufsbezeichnung: Physiotherapeut</p>
                     <p class="text-white">Zuständige Kammer: Physio Deutschland</p>
-                    <p class="text-white">Verliehen in: : Deutschland</p>
+                    <p class="text-white">Verliehen in: Deutschland</p>
                 </div>
             </div>
         </div>
@@ -359,6 +360,7 @@
         </div>
     </section>
     <!-- END: Bewerbung -->
+
     <!--START: Back to Top Button-->
     <a href="#home" class="btn btn-outline-success btn-round smooth" role="button" id="back-to-top-button">
         <span class="icon-arrow-up"> </span>
@@ -390,6 +392,47 @@
         </div>
     </div>
     <!-- END: Cookies Banner Modal -->
+
+
+    <!-- START: Email Success Toast -->
+    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1060;">
+        <div id="emailSuccessToast" class="toast bg-success text-white border-0 shadow-lg" role="alert"
+            aria-live="assertive" aria-atomic="true" data-animation="true" data-autohide="true" data-delay="5000">
+            <div class="toast-header bg-success text-white">
+                <i class="fa fa-check-circle mr-2"></i>
+                <strong class="mr-auto">Erfolg</strong>
+                <button type="button" class="ml-2 mb-1 close text-white" data-dismiss="toast" aria-label="Schließen">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                E-Mail erfolgreich gesendet!
+            </div>
+        </div>
+    </div>
+    <!-- END: Email Success Toast -->
+
+    <!--START: Floating Action Button-->
+    <div class="fab-container">
+        <a role="button" id="mainFab" class="btn btn-success  btn-round">
+            <i class="icon-plus"></i>
+        </a>
+        <!-- Sub-Buttons -->
+        <div class="fab-menu d-none py-1 px-0">
+            <button type="button" class="btn btn-success mb-2 fab-sub" id="fabAnfahrt">
+                <i class="icon-location-pin me-2"></i> Anfahrt
+            </button>
+            <button type="button" class="btn btn-success mb-2 fab-sub" id="fabTelefon">
+                <i class="icon-phone me-2"></i> Telefon
+            </button>
+
+            <button type="button" class="btn btn-success  fab-sub" id="fabEmail">
+                <i class="icon-envelope me-2"></i> E-Mail
+            </button>
+
+        </div>
+    </div>
+    <!--END: Floating Action Button-->
 
     <!-- START: Footer -->
     <footer>

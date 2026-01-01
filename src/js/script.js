@@ -6,11 +6,12 @@ $(window).on('scroll', function () {
 
         //  Back to top button
         $('#back-to-top-button').addClass('d-inline');
+
     }
     else {
         $('nav.navbar').removeClass('bg-white');
-        $('#back-to-top-button').removeClass('d-inline');
         $('nav.navbar').addClass('text-dark');
+        $('#back-to-top-button').removeClass('d-inline');
     }
 
 });
@@ -31,13 +32,18 @@ $(document).ready(function () {
     });
 });
 
-
-
 // Start Cookies Banner
 var cookiesBannerModal = new bootstrap.Modal(document.getElementById('cookiesBannerModal'));
 const key = 'Bill_Cookies_' + new Date().getMonth() + new Date().getFullYear();
 if (!localStorage.getItem(key)) {
     cookiesBannerModal.show();
+
+    $('#emailSuccessToast').toast({
+        animation: true,
+        autohide: true,
+        delay: 5000
+    });
+    $('#emailSuccessToast').toast('show');  // Display it
 }
 
 function acceptCookies() {
@@ -51,7 +57,6 @@ $(document).ready(function () {
     const currentYear = new Date().getFullYear();
     $('#year').text(currentYear);
 });
-
 // Ende Jahresanzeige im Footer 
 
 // Start AOS Animation
@@ -64,30 +69,43 @@ AOS.init({
 // Ende AOS Animation
 
 // Example starter JavaScript for disabling form submissions if there are invalid fields
-(function () {
-    'use strict';
-    window.addEventListener('load', function () {
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.getElementsByClassName('needs-validation');
-        // Loop over them and prevent submission
-        var validation = Array.prototype.filter.call(forms, function (form) {
-            form.addEventListener('submit', function (event) {
-                if (form.checkValidity() === false) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-            }, false);
-        });
-    }, false);
-})();
+$("window").on('load', function () {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
 
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function (form) {
+        form.addEventListener('submit', function (event) {
+            if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            form.classList.add('was-validated');
 
+        }, false);
+    });
+}, false);
 // Ende Form Validation
-window.addEventListener('load', function () {
-    const form = document.getElementById('kontakt-form');
-    if (form) {
-        form.reset();
-        form.classList.remove('was-validated');
-    }
+
+// Start: Floating buttons
+$(document).ready(function () {
+  $('#mainFab').on('click', function () {
+    $('.fab-menu').toggleClass('d-none');
+    $(this).find('i').toggleClass('icon-plus icon-close');
+  });
+
+  $('#fabAnfahrt').on('click', function () {
+    window.open('https://maps.google.com/?q=Traubenstra%C3%9Fe+16%2C+55545+Bad+Kreuznach', '_blank');
+  });
+
+  $('#fabEmail').on('click', function () {
+    window.location.href = 'mailto:kontakt@bill-physio.de';
+  });
+
+  $('#fabTelefon').on('click', function () {
+    window.location.href = 'tel:+4967197029941';
+  });
 });
+// Ende: Floating buttons

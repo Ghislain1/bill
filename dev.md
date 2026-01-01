@@ -10,6 +10,7 @@
   
 # Inspiration
 - https://orthotrain.physio/
+- https://physio-berft.de/#kontakt
 
 # Coockies
 - Local storage under Application 
@@ -27,10 +28,12 @@
   - html: alle anchor tag a muss mit smooth class erweitern werden
   - js: 
 - Function of Scrol Spy
-  - That is a function of bootstrop
+  - That is a function of bootstrap
   - Nav soll wiessen wo wir gerade sind 
     - html: spy activieren ==> 
     - css: body  muss position relativ muss!!!
+## Floating action button that opens a menu of other buttons
+- FAB = Flaoting Action Buttons
 
 # AOS
 - JS library animation, Animation for scroll
@@ -45,7 +48,12 @@
 
 # IONOS - Hosting
 - Products
+- Webmail Master :  weiterhin 
+- kontakt@bill-physio.de
+- BP011125.de
+- 
 
 
 # Formsubmit - Sending email to 
 - https://formsubmit.co/documentation
+-  https://formsubmit.co/kontakt@bill-physio.de
