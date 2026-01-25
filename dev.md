@@ -61,3 +61,8 @@
 # Formsubmit - Sending email to 
 - https://formsubmit.co/documentation
 -  https://formsubmit.co/kontakt@bill-physio.de
+-  
+
+# Google Tag Manager
+- Analytics:
+- Flux de donnees
