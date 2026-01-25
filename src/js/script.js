@@ -92,8 +92,8 @@ $("window").on('load', function () {
 // Start: Floating Action buttons (FAB)
 $(document).ready(function () {
     $('#mainFab').on('click', function () {
-        $('.fab-menu').toggleClass('d-none');
-        $(this).find('i').toggleClass('icon-feed icon-close');
+        // $('.fab-menu').toggleClass('d-none');
+        // $(this).find('i').toggleClass('icon-feed icon-close');
     });
 
     $('#fabAnfahrt').on('click', function () {
@@ -107,5 +107,9 @@ $(document).ready(function () {
     $('#fabTelefon').on('click', function () {
         window.location.href = 'tel:+4967197029941';
     });
+
+    // Floating Action Button  should open on  initialzation
+    $('.fab-menu').removeClass('d-none');
+    $('#mainFab').find('i').removeClass('icon-feed').addClass('icon-close');
 });
 // Ende: Floating Action buttons (FAB)
