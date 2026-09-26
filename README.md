@@ -46,7 +46,12 @@ Git integrations configured in hosting dashboards are separate from GitHub workf
 
 ## Privacy and contact
 
-No Analytics, third-party scripts, remote fonts, browser storage or patient-data form.
+No Analytics, third-party scripts, remote fonts, new browser identifiers or patient-data form.
+Known cookies and consent entries from the former integration are removed on return
+visits without retaining their values. Both HTTP headers and HTML fallback policies
+block form submissions, script connections and embedded frames. Contact remains usable
+if browser storage is blocked. IONOS may generate statistics from server logs; these
+are distinct from browser analytics and are described in the privacy notice.
 Appointments are arranged by phone; email is for general organizational questions.
 The two practice videos play automatically, muted and looping. Maps is an external link.
 
@@ -55,3 +60,6 @@ Bootstrap 4 CSS is retained to preserve the existing layout; its JavaScript and 
 are not loaded. Dependency versions are locked and checked by npm audit.
 
 See AUDIT-CORRECTIONS.md for evidence and items requiring account/administrative access.
+See PRIVACY-RELEASE.md for the 26 September privacy patch and the confirmed IONOS
+deployment blocker. A successful GitHub check or Vercel preview is not evidence that
+the bill-physio.de production domain has been updated.

@@ -10,7 +10,8 @@ http.createServer((req, res) => {
   if (filename === root) filename = path.join(root, 'index.html');
   if (!filename.startsWith(root + path.sep)) { res.writeHead(403).end(); return; }
   if (!fs.existsSync(filename) || !fs.statSync(filename).isFile()) { res.writeHead(404).end(); return; }
+  res.setHeader('Referrer-Policy', 'no-referrer');
   res.setHeader('Content-Type', types[path.extname(filename)] || 'application/octet-stream');
-  res.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'none'");
+  res.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'");
   fs.createReadStream(filename).pipe(res);
 }).listen(4200, '127.0.0.1');

@@ -76,3 +76,27 @@ test('videos play automatically without play buttons', async ({ page }) => {
     }
   }
 });
+
+test('legacy analytics cookies and consent are cleared on return visits', async ({ page, context }) => {
+  await context.addCookies(['_ga', '_ga_MN2KJN5SSK'].map(name => ({ name, value: 'legacy-test-only', url: 'http://127.0.0.1:4200' })));
+  await context.addInitScript(() => {
+    localStorage.setItem('Bill_Cookies_82026', 'true');
+    localStorage.setItem('unrelated-setting', 'keep');
+  });
+  await page.goto('/');
+  await expect(page.locator('#kontakt a[href="tel:+4967197029941"]')).toBeVisible();
+  expect(await page.evaluate(() => localStorage.getItem('Bill_Cookies_82026'))).toBeNull();
+  expect(await page.evaluate(() => localStorage.getItem('unrelated-setting'))).toBe('keep');
+  expect(await context.cookies()).toEqual([]);
+  await expect(page.locator('form, #emailSuccessToast, #cookiesBannerModal')).toHaveCount(0);
+});
+
+test('patients and applicants can read the relevant privacy information before contact', async ({ page }) => {
+  await page.goto('/');
+  await page.locator('#kontakt a[href="datenschutz.html"]').click();
+  await expect(page.locator('h1')).toHaveText('Datenschutzerklärung');
+  await page.goto('/');
+  await page.locator('#bewerbung a[href="datenschutz.html#bewerbungen"]').click();
+  await expect(page.locator('#bewerbungen')).toBeVisible();
+  await expect(page).toHaveURL(/datenschutz\.html#bewerbungen$/);
+});

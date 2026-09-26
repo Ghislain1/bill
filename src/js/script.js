@@ -1,3 +1,10 @@
+import { removeLegacyTracking } from './privacy.js';
+
+// Accessing window.localStorage itself can throw in restricted browser contexts.
+let legacyStorage;
+try { legacyStorage = window.localStorage; } catch { /* Storage is unavailable. */ }
+removeLegacyTracking(legacyStorage, document, window.location);
+
 const navigation = document.getElementById('navbar-toggle');
 const toggle = document.querySelector('.navbar-toggler');
 function closeNavigation() {
