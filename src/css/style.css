@@ -4,8 +4,8 @@ body {
 
 body,
 p {
-    font-family: 'Montserrat', cursive;
-    font-weight: 300;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-weight: 400;
 }
 
 h1,
@@ -15,7 +15,7 @@ h4,
 h5,
 h6,
 .font-alt {
-    font-family: Arial, cursive;
+    font-family: Arial, sans-serif;
 }
 
 /* Farben */
@@ -72,11 +72,11 @@ section {
 }
 
 img {
-    background-color: transparent rgb(10, 153, 74);
+    background-color: transparent;
 }
 
 .svg-bg {
-    background-color: transparent rgb(10, 153, 74);
+    background-color: transparent;
 }
 
 .navbar.bg-white .navbar-nav .nav-link,
@@ -106,7 +106,8 @@ nav {
 .hero-bg {
     position: relative;
     overflow: hidden;
-    height: 100vh;
+    min-height: 100svh;
+    height: auto;
 }
 
 .hero-bg video {
@@ -123,7 +124,7 @@ nav {
 
 @media (max-width: 768px) {
     #home p {
-        color: white !important;
+        color: #212529 !important;
 
     }
 }
@@ -231,3 +232,40 @@ input.form-control:hover {
 }
 
 /* END: Floating Action Buttons */
+/* Fixed navigation, readable video overlay, and keyboard access. */
+html { scroll-behavior: smooth; scroll-padding-top: 110px; }
+section { padding: 90px 0; scroll-margin-top: 110px; }
+.navbar-brand img { width: 112px; height: 86px; }
+.navbar-dark .navbar-nav .nav-link { color: #f8f9fa; }
+.navbar .navbar-nav .nav-link:focus-visible, a:focus-visible, button:focus-visible { outline: 3px solid #d88b00; outline-offset: 4px; }
+.hero-bg { padding: 130px 0 80px; display: flex; align-items: center; background: #dbe8de; }
+.hero-copy { background: rgba(255,255,255,.95); padding: 24px; border-radius: 16px; }
+#home .row { height: auto; }
+.card-img-top { aspect-ratio: 3 / 2; object-fit: cover; height: auto; }
+.card-title { font-size: 1.25rem; }
+#ueber-uns .img-bg { top: 90px; bottom: 90px; width: 46%; }
+#ueber-uns video { height: calc(100% - 50px); object-fit: cover; }
+.text-success { color: #176b36 !important; }
+.btn-success { background-color: #176b36; border-color: #176b36; }
+.btn-outline-success { color: #176b36; border-color: #176b36; }
+.btn-outline-success:hover { background-color: #176b36; border-color: #176b36; }
+#angebote > .container > .row:first-child .text-success, #impressum .text-success, footer .text-success { color: #84dfa3 !important; }
+.fab-container { right: 16px; bottom: 16px; display: flex; gap: 8px; }
+#back-to-top-button { bottom: 72px; right: 16px; background: white; }
+footer { padding-bottom: 65px; }
+.skip-link { position: fixed; top: -100px; left: 12px; z-index: 2000; background: white; padding: 12px; color: #176b36; }
+.skip-link:focus { top: 12px; }
+.document-page main { max-width: 900px; min-height: 70vh; }
+.document-page h2 { margin-top: 2rem; font-size: 1.5rem; }
+a { color: #176b36; }
+p a:not(.btn), address a, footer a { text-decoration: underline; }
+@media (max-width: 991px) {
+    .navbar-collapse { padding-bottom: 12px; }
+    .hero-copy { margin: 0 15px; }
+    .hero-bg { min-height: auto; }
+    section { padding: 65px 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+}

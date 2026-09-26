@@ -1,115 +1,51 @@
-$(window).on('scroll', function () {
-    // Custom jQuery code can go here
-    if ($(window).scrollTop() > 70) {
-        // Code to execute every 50 pixels scrolled
-        $('nav.navbar').addClass('bg-white');
-
-        //  Back to top button
-        $('#back-to-top-button').addClass('d-inline');
-
-    }
-    else {
-        $('nav.navbar').removeClass('bg-white');
-        $('nav.navbar').addClass('text-dark');
-        $('#back-to-top-button').removeClass('d-inline');
-    }
-
+const navigation = document.getElementById('navbar-toggle');
+const toggle = document.querySelector('.navbar-toggler');
+function closeNavigation() {
+    navigation?.classList.remove('show');
+    toggle?.setAttribute('aria-expanded', 'false');
+}
+toggle?.addEventListener('click', () => {
+    const expanded = navigation.classList.toggle('show');
+    toggle.setAttribute('aria-expanded', String(expanded));
 });
-
-// (ANIMATION)Smooth scroll for back to top button
-$(document).ready(function () {
-    $('a.smooth').on('click', function (event) {
-        if (this.hash !== "") {
-            event.preventDefault();
-            var hash = this.hash;
-            // Wir selectieren was wir animieren wollen: den HTML und Body Tag,   lang(animation dauert 1100ms)
-            $('html, body').animate({
-                scrollTop: $(hash).offset().top
-            }, 1100, function () {
-                window.location.hash = hash;
-            });
+navigation?.addEventListener('click', (event) => {
+    if (event.target.closest('a')) closeNavigation();
+});
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && navigation?.classList.contains('show')) {
+        closeNavigation();
+        toggle.focus();
+    }
+});
+const backToTop = document.getElementById('back-to-top-button');
+function updateScroll() {
+    document.querySelector('nav.navbar')?.classList.toggle('bg-white', window.scrollY > 70);
+    backToTop?.classList.toggle('d-inline', window.scrollY > 70);
+}
+window.addEventListener('scroll', updateScroll, { passive: true });
+updateScroll();
+document.querySelectorAll('[data-year]').forEach((element) => {
+    element.textContent = String(new Date().getFullYear());
+});
+// Videos only download after the visitor presses play.
+document.querySelectorAll('[data-video-toggle]').forEach((button) => {
+    const video = document.getElementById(button.dataset.videoToggle);
+    button.addEventListener('click', async () => {
+        if (!video) return;
+        if (!video.paused) {
+            video.pause();
+            button.textContent = 'Video abspielen';
+            button.setAttribute('aria-pressed', 'false');
+            return;
+        }
+        try {
+            if (!video.src) video.src = video.querySelector('a').href;
+            await video.play();
+            button.textContent = 'Video pausieren';
+            button.setAttribute('aria-pressed', 'true');
+        } catch {
+            button.textContent = 'Video erneut laden';
+            button.setAttribute('aria-pressed', 'false');
         }
     });
 });
-
-// Start Cookies Banner
-var cookiesBannerModal = new bootstrap.Modal(document.getElementById('cookiesBannerModal'));
-const key = 'Bill_Cookies_' + new Date().getMonth() + new Date().getFullYear();
-if (!localStorage.getItem(key)) {
-    cookiesBannerModal.show();
-
-    $('#emailSuccessToast').toast({
-        animation: true,
-        autohide: true,
-        delay: 5000
-    });
-    $('#emailSuccessToast').toast('show');  // Display it
-}
-
-function acceptCookies() {
-    localStorage.setItem(key, 'true');
-    cookiesBannerModal.hide();
-}
-// Ende Cookies Banner
-
-// Start Jahresanzeige im Footer
-$(document).ready(function () {
-    const currentYear = new Date().getFullYear();
-    $('#year').text(currentYear);
-});
-// Ende Jahresanzeige im Footer 
-
-// Start AOS Animation
-AOS.init({
-    duration: 1000,
-    easing: 'ease-out',
-    offset: 251,
-    disable: 'mobile'
-});
-// Ende AOS Animation
-
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-$("window").on('load', function () {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('needs-validation');
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('needs-validation');
-
-    // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function (form) {
-        form.addEventListener('submit', function (event) {
-            if (form.checkValidity() === false) {
-                event.preventDefault();
-                event.stopPropagation();
-            }
-            form.classList.add('was-validated');
-
-        }, false);
-    });
-}, false);
-// Ende Form Validation
-
-// Start: Floating Action buttons (FAB)
-$(document).ready(function () {
-    $('#mainFab').on('click', function () {
-        // $('.fab-menu').toggleClass('d-none');
-        // $(this).find('i').toggleClass('icon-feed icon-close');
-    });
-
-    $('#fabAnfahrt').on('click', function () {
-        window.open('https://maps.google.com/?q=Traubenstra%C3%9Fe+16%2C+55545+Bad+Kreuznach', '_blank');
-    });
-
-    $('#fabEmail').on('click', function () {
-        window.location.href = 'mailto:kontakt@bill-physio.de';
-    });
-
-    $('#fabTelefon').on('click', function () {
-        window.location.href = 'tel:+4967197029941';
-    });
-
-    // Floating Action Button  should open on  initialzation
-    $('.fab-menu').removeClass('d-none');
-    $('#mainFab').find('i').removeClass('icon-feed').addClass('icon-close');
-});
-// Ende: Floating Action buttons (FAB)

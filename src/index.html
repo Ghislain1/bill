@@ -10,49 +10,37 @@
 
     <!-- Fav ICON  -->
     <link rel="icon" type="image/x-icon" href="img/bill.ico">
-    <title> Bill-Physio </title>
+    <title>Physiotherapie Bad Kreuznach | Bill-Physio</title>
+    <meta name="description" content="Bill-Physio: Ihre Praxis für Physiotherapie in Bad Kreuznach. Entdecken Sie unsere Therapieangebote und vereinbaren Sie Ihren Termin unter 0671 97029941.">
+    <link rel="canonical" href="https://bill-physio.de/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="de_DE">
+    <meta property="og:title" content="Bill-Physio – Physiotherapie in Bad Kreuznach">
+    <meta property="og:description" content="Individuelle Physiotherapie in der Traubenstraße 16. Rufen Sie uns für einen Termin an.">
+    <meta property="og:url" content="https://bill-physio.de/">
 
-    <!-- Google Font: Montserrat -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat|Oleo+Script+Swash+Caps">
-
-
-    <!-- Bootstrap CSS-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-
-    <!--AOS Animation on Scroll Library-->
-    <link rel="stylesheet" href="../node_modules/aos/dist/aos.css">
-
-    <!-- Simple Line Icons -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css">
-
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../node_modules/simple-line-icons/css/simple-line-icons.css">
     <!--Custom Css-->
     <link rel="stylesheet" href="css/style.css">
+    <noscript><link rel="stylesheet" href="css/nojs.css"></noscript>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MN2KJN5SSK"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-MN2KJN5SSK');
-    </script>
-
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "MedicalBusiness", "@id": "https://bill-physio.de/#praxis", "name": "Bill-Physio", "url": "https://bill-physio.de/", "telephone": "+49 671 97029941", "email": "kontakt@bill-physio.de", "address": {"@type": "PostalAddress", "streetAddress": "Traubenstraße 16", "postalCode": "55545", "addressLocality": "Bad Kreuznach", "addressCountry": "DE"}}</script>
 </head>
 
-<body data-spy="scroll" data-target=".navbar" data-offset="40">
+<body>
+    <a class="skip-link" href="#main">Zum Inhalt springen</a>
     <!-- START: Navigation -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-gradient fixed-top py-0">
 
             <div class="container">
                 <a href="#home" class="navbar-brand font-alt smooth">
-                    <img src="img/logo.svg" alt="Ghislain & Bill" class="svg-bg rounded-circle" width="200"
+                    <img src="img/logo.svg" alt="Bill-Physio – Startseite" class="svg-bg rounded-circle" width="200"
                         height="155">
                 </a>
                 <button class="navbar-toggler btn-round" type="button" data-toggle="collapse"
-                    data-target="#navbar-toggle" aria-controls="navbar-toggle" aria-label="Toggle navigation">
+                    data-target="#navbar-toggle" aria-controls="navbar-toggle" aria-label="Menü öffnen oder schließen" aria-expanded="false">
                     <span class="icon-menu"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end text-uppercase" id="navbar-toggle">
@@ -76,22 +64,25 @@
                             <a href="#bewerbung" class="nav-link smooth">Bewerbung</a>
                         </li>
                         <li class="nav-item">
-                            <a title="Home Training " target="_blank" href="videos.html" class="nav-link smooth">Video
+                            <a title="Videotraining" href="videos.html" class="nav-link smooth">Video
                                 Trainings</a>
                         </li>
+                    </ul>
                 </div>
+            </div>
         </nav>
     </header>
     <!-- END: Navigation -->
+    <main id="main" tabindex="-1">
     <section id="home" class="hero-bg">
         <div class="container">
             <div class="row justify-content-end align-items-center">
-                <video autoplay muted loop playsinline>
-                    <source src="video/home.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
+                <video id="home-video" muted loop playsinline preload="none" poster="img/hausbesuche.webp" aria-label="Einblick in unsere Praxis">
+                    <a href="video/home.mp4">Praxisvideo herunterladen</a>
                 </video>
-                <div class="col-md-6 text-center text-md-right">
-                    <h1 data-aos="flip-left" class="text-success mb-4">Bill-Physio</h1>
+                <div class="col-md-6 text-center text-md-right hero-copy">
+                    <h1 class="text-success mb-4">Bill-Physio <span class="d-block h4">Physiotherapie in Bad Kreuznach</span></h1>
+                    <button class="btn btn-outline-success btn-round mb-3" type="button" data-video-toggle="home-video" aria-pressed="false">Video abspielen</button>
                     <p class="lead text-dark"> Wir hören zu, wir verstehen, wir behandeln. Ihre Gesundheit verdient
                         Zeit
                         und Aufmerksamkeit. Das Team von Bill Physio nimmt sich Zeit. Für Sie und für Ihre Gesundheit.
@@ -112,20 +103,21 @@
                     </a>
                 </div>
             </div>
+        </div>
     </section>
 
     <!-- Ueber uns -->
     <section id="ueber-uns" class="d-relative">
         <div class="img-bg d-none d-lg-inline">
-            <video autoplay muted loop playsinline class="w-100">
-                <source src="video/ueber-uns.mp4" type="video/mp4">
-                Your browser does not support the video tag.
+            <video id="about-video" muted loop playsinline preload="none" poster="img/hausbesuche.webp" class="w-100" aria-label="Über unsere Praxis">
+                <a href="video/ueber-uns.mp4">Praxisvideo herunterladen</a>
             </video>
+            <button class="btn btn-outline-success" type="button" data-video-toggle="about-video" aria-pressed="false">Video abspielen</button>
         </div>
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
-                    <h1 data-aos="flip-left" class="text-success mb-4">Wer sind wir?</h1>
+                    <h2 class="text-success mb-4">Wer sind wir?</h2>
                     <p> Wir sind eine Praxis für den Bereich
                         Physiotherapie. </p>
                     <p> In unserer Praxis hat Ihre Gesundheit und
@@ -152,7 +144,7 @@
         <div class="container">
             <div class="row justify-content-center mb-5">
                 <div class="col-md-8 text-center">
-                    <h1 data-aos="flip-left" class="text-success mb-4">Was wir Ihnen anbieten können ?</h1>
+                    <h2 class="text-success mb-4">Was wir Ihnen anbieten können ?</h2>
                     <p class="lead text-white"> Entdecken Sie unsere vielfältigen Therapieangebote und finden Sie den
                         passenden
                         Ansatz für Ihre Bedürfnisse. </p>
@@ -161,10 +153,10 @@
             <!--Card    -->
             <div class="row row-cols-1 row-cols-md-3">
                 <div class="col mb-4">
-                    <div class="card h-100" data-aos="flip-left">
-                        <img src="img/Krankengymnastik.png" class="card-img-top" alt="Angebote Bild2">
+                    <div class="card h-100">
+                        <img src="img/Krankengymnastik.webp" class="card-img-top" alt="" loading="lazy" decoding="async" width="720" height="480">
                         <div class="card-body">
-                            <h5 class="card-title text-success">Krankengymnastik</h5>
+                            <h3 class="card-title text-success">Krankengymnastik</h3>
                             <p class="card-text">Behandlungsmethode, die darauf abzielt, Beweglichkeit, Kraft,
                                 Koordination und Ausdauer zu verbessern. Durch individuell angepasste Übungen werden
                                 Schmerzen reduziert, die Funktion des Bewegungsapparates gefördert und der
@@ -173,10 +165,10 @@
                     </div>
                 </div>
                 <div class="col mb-4">
-                    <div class="card h-100" data-aos="flip-left">
-                        <img src="img/atemgymnastik.jpg" class="card-img-top" alt=" angebote Bild3">
+                    <div class="card h-100">
+                        <img src="img/atemgymnastik.webp" class="card-img-top" alt="" loading="lazy" decoding="async" width="720" height="480">
                         <div class="card-body">
-                            <h5 class="card-title text-success">Atemgymnastik</h5>
+                            <h3 class="card-title text-success">Atemgymnastik</h3>
                             <p class="card-text">Die Atemgymnastik ist eine physiotherapeutische Behandlungsmethode zur
                                 Verbesserung der Atemfunktion und zur Förderung einer bewussten, effizienten Atmung.
                                 Durch gezielte Atemübungen wird die Lungenbelüftung verbessert, die Atemmuskulatur
@@ -185,10 +177,10 @@
                     </div>
                 </div>
                 <div class="col mb-4">
-                    <div class="card h-100" data-aos="flip-left">
-                        <img src="img/lymphdrainage.jpg" class="card-img-top" alt="...">
+                    <div class="card h-100">
+                        <img src="img/lymphdrainage.webp" class="card-img-top" alt="" loading="lazy" decoding="async" width="720" height="480">
                         <div class="card-body">
-                            <h5 class="card-title text-success">Manuelle Lymphdrainage</h5>
+                            <h3 class="card-title text-success">Manuelle Lymphdrainage</h3>
                             <p class="card-text">Die Manuelle Lymphdrainage ist eine spezielle physiotherapeutische
                                 Behandlung zur Anregung des Lymphflusses und zur Reduzierung von Schwellungen (Ödemen).
                                 Durch sanfte, rhythmische Grifftechniken wird der Abtransport von Gewebsflüssigkeit
@@ -197,10 +189,10 @@
                     </div>
                 </div>
                 <div class="col mb-4">
-                    <div class="card h-100" data-aos="flip-left">
-                        <img src="img/Kompressionsbandagierung.png" class="card-img-top" alt="Ueber Uns">
+                    <div class="card h-100">
+                        <img src="img/Kompressionsbandagierung.webp" class="card-img-top" alt="" loading="lazy" decoding="async" width="720" height="480">
                         <div class="card-body">
-                            <h5 class="card-title text-success">Kompressionsbandagierung</h5>
+                            <h3 class="card-title text-success">Kompressionsbandagierung</h3>
                             <p class="card-text">Die Kompressionsbandagierung ist eine therapeutische Maßnahme zur
                                 Unterstützung des venösen und lymphatischen Rückflusses. Durch das Anlegen spezieller
                                 Bandagen wird der Druck im Gewebe reguliert, wodurch Schwellungen reduziert und der
@@ -209,10 +201,10 @@
                     </div>
                 </div>
                 <div class="col mb-4">
-                    <div class="card" data-aos="flip-left">
-                        <img src="img/schlingentisch.png" class="card-img-top" alt="Ueber Uns">
+                    <div class="card">
+                        <img src="img/schlingentisch.webp" class="card-img-top" alt="" loading="lazy" decoding="async" width="720" height="480">
                         <div class="card-body">
-                            <h5 class="card-title text-success">Schlingentisch (Traktionsbehandlung)</h5>
+                            <h3 class="card-title text-success">Schlingentisch (Traktionsbehandlung)</h3>
                             <p class="card-text">Die Schlingentischbehandlung ist eine physiotherapeutische Methode, bei
                                 der der Körper oder einzelne Körperteile durch Schlingen teilweise entlastet werden.
                                 Dadurch können schmerzhafte Bewegungen erleichtert, Gelenke mobilisiert und die
@@ -221,10 +213,10 @@
                     </div>
                 </div>
                 <div class="col mb-4">
-                    <div class="card h-100" data-aos="flip-left">
-                        <img src="img/eisbehandlung.jpg" class="card-img-top" alt="Ueber Uns">
+                    <div class="card h-100">
+                        <img src="img/eisbehandlung.webp" class="card-img-top" alt="" loading="lazy" decoding="async" width="720" height="480">
                         <div class="card-body">
-                            <h5 class="card-title text-success">Eisbehandlung (Kaltetherapie)</h5>
+                            <h3 class="card-title text-success">Eisbehandlung (Kaltetherapie)</h3>
                             <p class="card-text">Die Kältetherapie ist eine physikalische Behandlungsmethode, bei der
                                 gezielt Kälte auf den Körper angewendet wird. Sie dient der Schmerzlinderung, der
                                 Reduktion von Schwellungen und Entzündungen sowie der Förderung der Heilung nach
@@ -233,10 +225,10 @@
                     </div>
                 </div>
                 <div class="col mb-4">
-                    <div class="card h-100" data-aos="flip-left">
-                        <img src="img/massage.jpg" class="card-img-top" alt="Ueber Uns">
+                    <div class="card h-100">
+                        <img src="img/massage.webp" class="card-img-top" alt="" loading="lazy" decoding="async" width="720" height="480">
                         <div class="card-body">
-                            <h5 class="card-title text-success">Massage </h5>
+                            <h3 class="card-title text-success">Massage </h3>
                             <p class="card-text">Die Massagetherapie ist eine manuelle Behandlungsmethode, bei der durch
                                 gezielte Grifftechniken Muskulatur, Bindegewebe und Durchblutung beeinflusst werden. Sie
                                 dient der Lockerung verspannter Muskeln, der Schmerzlinderung und der Förderung von
@@ -246,10 +238,10 @@
                 </div>
 
                 <div class="col mb-4">
-                    <div class="card h-100" data-aos="flip-left">
-                        <img src="img/schlingentisch.png" class="card-img-top" alt="Ueber Uns">
+                    <div class="card h-100">
+                        <img src="img/schlingentisch.webp" class="card-img-top" alt="" loading="lazy" decoding="async" width="720" height="480">
                         <div class="card-body">
-                            <h5 class="card-title text-success">KG-ZNS-Bobath </h5>
+                            <h3 class="card-title text-success">KG-ZNS-Bobath </h3>
                             <p class="card-text">Die Bobath-Therapie ist eine physiotherapeutische Behandlungsmethode
                                 für Menschen mit zentralen neurologischen Erkrankungen, insbesondere nach Schlaganfall
                                 oder bei zerebralen Bewegungsstörungen. Sie zielt darauf ab, Bewegungsabläufe zu
@@ -259,10 +251,10 @@
                     </div>
                 </div>
                 <div class="col mb-4">
-                    <div class="card h-100" data-aos="flip-left">
-                        <img src="img/kinesio-tapings.jpg" class="card-img-top" alt="Kinesio-Taping">
+                    <div class="card h-100">
+                        <img src="img/kinesio-tapings.webp" class="card-img-top" alt="" loading="lazy" decoding="async" width="720" height="480">
                         <div class="card-body">
-                            <h5 class="card-title text-success">Kinesio-Taping </h5>
+                            <h3 class="card-title text-success">Kinesio-Taping </h3>
                             <p class="card-text">Das Kinesio-Taping ist eine Therapieform, bei der elastische Tapes auf
                                 die Haut aufgebracht werden, um Muskeln, Gelenke und das Lymphsystem zu unterstützen. Es
                                 dient der Schmerzlinderung, Stabilisierung von Bewegungsabläufen, Förderung der
@@ -271,10 +263,10 @@
                     </div>
                 </div>
                 <div class="col mb-4">
-                    <div class="card h-100" data-aos="flip-left">
-                        <img src="img/HeißeRolle.png" class="card-img-top" alt="Heiße Rolle">
+                    <div class="card h-100">
+                        <img src="img/HeißeRolle.webp" class="card-img-top" alt="" loading="lazy" decoding="async" width="720" height="480">
                         <div class="card-body">
-                            <h5 class="card-title text-success"> Heiße Rolle</h5>
+                            <h3 class="card-title text-success"> Heiße Rolle</h3>
                             <p class="card-text">Die Heißrolle ist ein physiotherapeutisches Hilfsmittel, das Wärme
                                 gezielt auf Muskeln und Gelenke überträgt. Sie dient der Lockerung verspannter
                                 Muskulatur, der Förderung der Durchblutung und der Schmerzlinderung.</p>
@@ -282,10 +274,10 @@
                     </div>
                 </div>
                 <div class="col mb-4">
-                    <div class="card h-100" data-aos="flip-left">
-                        <img src="img/elektrotherapie.jpg" class="card-img-top" alt="Ueber Uns">
+                    <div class="card h-100">
+                        <img src="img/elektrotherapie.webp" class="card-img-top" alt="" loading="lazy" decoding="async" width="720" height="480">
                         <div class="card-body">
-                            <h5 class="card-title text-success">Elektrotherapie</h5>
+                            <h3 class="card-title text-success">Elektrotherapie</h3>
                             <p class="card-text"> Die Elektrotherapie ist eine physiotherapeutische Methode, bei der
                                 elektrische Ströme gezielt auf Muskeln und Nerven angewendet werden. Sie dient der
                                 Schmerzlinderung, der Muskelstimulation, der Durchblutungsförderung und der
@@ -294,10 +286,10 @@
                     </div>
                 </div>
                 <div class="col mb-4">
-                    <div class="card h-100" data-aos="flip-left">
-                        <img src="img/fango.png" class="card-img-top" alt="Ueber Uns">
+                    <div class="card h-100">
+                        <img src="img/fango.webp" class="card-img-top" alt="" loading="lazy" decoding="async" width="720" height="480">
                         <div class="card-body">
-                            <h5 class="card-title text-success">Behandlung mit Rotlichtlampe</h5>
+                            <h3 class="card-title text-success">Behandlung mit Rotlichtlampe</h3>
                             <p class="card-text">Die Behandlung mit der Rotlichtlampe ist eine physikalische Therapie,
                                 bei der gezielte Wärme durch Infrarotstrahlung auf Haut und Gewebe übertragen wird. Sie
                                 fördert die Durchblutung, entspannt verspannte Muskeln und unterstützt die Linderung von
@@ -307,10 +299,10 @@
                 </div>
 
                 <div class="col mb-4">
-                    <div class="card h-100" data-aos="flip-left">
-                        <img src="img/hausbesuche.png" class="card-img-top" alt="Ueber Uns">
+                    <div class="card h-100">
+                        <img src="img/hausbesuche.webp" class="card-img-top" alt="" loading="lazy" decoding="async" width="720" height="480">
                         <div class="card-body">
-                            <h5 class="card-title text-success">Hausbesuche</h5>
+                            <h3 class="card-title text-success">Hausbesuche</h3>
                             <p class="card-text">Die Behandlung im Rahmen von Hausbesuchen ist eine physiotherapeutische
                                 Versorgung direkt zu Hause beim Patienten. Sie ermöglicht individuelle Therapie,
                                 Bewegungsübungen und Betreuung vor Ort, insbesondere für Patienten mit eingeschränkter
@@ -320,10 +312,10 @@
                 </div>
 
                 <div class="col mb-4">
-                    <div class="card h-100" data-aos="flip-left">
-                        <img src="img/behandlung-kindern-jugendlichen.png" class="card-img-top" alt="Ueber Uns">
+                    <div class="card h-100">
+                        <img src="img/behandlung-kindern-jugendlichen.webp" class="card-img-top" alt="" loading="lazy" decoding="async" width="720" height="480">
                         <div class="card-body">
-                            <h5 class="card-title text-success"> Behandlung von Kindern und Jugendlichen</h5>
+                            <h3 class="card-title text-success"> Behandlung von Kindern und Jugendlichen</h3>
                             <p class="card-text">Die Behandlung von Kindern und Jugendlichen ab 6 Jahren ist eine
                                 altersgerechte physiotherapeutische Versorgung, die Beweglichkeit, Kraft und
                                 Koordination gezielt fördert. Sie berücksichtigt spielerische Elemente und individuelle
@@ -341,65 +333,17 @@
     <!-- START: Kontakt -->
     <section id="kontakt" class="d-relative">
         <div class="container">
-            <input type="hidden" name="_next" value="https://bill-physio.de/#kontakt">
             <div class="row justify-content-center">
                 <div class="col-md-10 text-center">
-                    <h1 data-aos="flip-left" class="text-success">Schön von euch zu lesen</h1>
+                    <h2 class="text-success">Termin vereinbaren</h2>
+                    <p>Rufen Sie uns an, um einen Termin zu vereinbaren oder Fragen zu unserer Praxis zu klären.</p>
+                    <p><a class="btn btn-success btn-lg btn-round" href="tel:+4967197029941">0671 97029941 anrufen</a></p>
+                    <p>Für allgemeine organisatorische Fragen: <a href="mailto:kontakt@bill-physio.de">kontakt@bill-physio.de</a></p>
+                    <p>Bitte senden Sie keine Befunde, Diagnosen oder andere Gesundheitsdaten per unverschlüsselter E-Mail. Medizinische Einzelheiten besprechen wir persönlich oder telefonisch.</p>
+                    <p>Ein Termin ist erst nach unserer Bestätigung vereinbart. Hinweise zur Verarbeitung Ihrer Daten finden Sie in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+                    <address>Bill-Physio · Traubenstraße 16 · 55545 Bad Kreuznach</address>
                 </div>
             </div>
-            <form id="kontakt-form" method="POST" action="https://formsubmit.co/kontakt@bill-physio.de"
-                class="needs-validation" novalidate>
-                <div class="form-row">
-                    <div class="col-md-6 mb-4 pr-md-4 pl-md-4">
-                        <div class="input-group input-group-lg">
-                            <textarea class="form-control" name="nachricht" id="messageBody" placeholder="Nachricht..."
-                                rows="8" required></textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-4 pr-md-4 pl-md-4">
-                        <div class="input-group input-group-lg mb-4">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text icon-user bg-success text-white"></span>
-                            </div>
-                            <input name="name" type="text" class="form-control" id="name"
-                                placeholder="Vollständiger  Name..." required>
-                        </div>
-                        <div class="input-group input-group-lg mb-4">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text icon-paper-plane bg-success text-white"></span>
-                            </div>
-                            <input name="email" type="email" class="form-control" id="email" placeholder="Email..."
-                                required>
-                        </div>
-                        <div class="input-group input-group-lg mb-4">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text icon-phone bg-success text-white"></span>
-                            </div>
-                            <input name="tel" type="tel" pattern="^(\+49|0049|0)[1-9][0-9\s\-\/]{7,}$"
-                                class="form-control" id="telefon" placeholder="Telefon..." required>
-                        </div>
-                        <div class="text-center w-100">
-                            <button id="sendMessageButton"
-                                class="btn btn-outline-success btn-lg  btn-round d-block w-100" type="submit">
-                                Nachricht senden
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="col-md-10 text-center">
-                        <input class="form-check-input text-center" type="checkbox" id="inlineCheckbox1" value=""
-                            required>
-                        <small class="text-muted"> Ich bin damit einverstanden, dass meine Daten zur Bearbeitung meiner
-                            Anfrage verwendet werden. </small>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <small class="text-muted"> Wir werden Ihre Daten niemals an Dritte weitergeben. </small>
-                    </div>
-                </div>
-            </form>
         </div>
     </section>
     <!-- Ende: Kontakt -->
@@ -410,17 +354,16 @@
         <div class="container">
             <div class="row justify-content-center mb-5">
                 <div class="col-md-8 text-center">
-                    <h1 data-aos="flip-left" class="text-success mb-4">Impressum</h1>
-                    <p class="lead text-white"> Angaben gemäß § 5 TMG </p>
+                    <h2 class="text-success mb-4">Impressum</h2>
+                    <p class="lead text-white"> Angaben gemäß § 5 DDG </p>
                     <p class="text-white"> Bill Physio, Praxis für Physiotherapie Bidias Thina Bill Hyacinthe</p>
                     <p class="text-white"> Traubenstraße 16</p>
                     <p class="text-white"> 55545 Bad Kreuznach </p>
                     <p class="text-white"> Kontakt: </p>
                     <p class="text-white"> Tel. 0671 97029941 / Fax: 067197028459</p>
                     <p class="text-white"> E-Mail: kontakt@bill-physio.de </p>
-                    <p class="text-white"> Steuernummer: 0601431380 </p>
                     <p class="text-white">Berufsbezeichnung: Physiotherapeut</p>
-                    <p class="text-white">Zuständige Kammer: Physio Deutschland</p>
+                    <p class="text-white">Berufsrechtliche Regelung: <a class="text-white" href="https://www.gesetze-im-internet.de/mphg/">Masseur- und Physiotherapeutengesetz (MPhG)</a></p>
                     <p class="text-white">Verliehen in: Deutschland</p>
                 </div>
             </div>
@@ -433,7 +376,7 @@
         <div class="container">
             <div class="row justify-content-center mb-5">
                 <div class="col-md-8 text-center">
-                    <h1 data-aos="flip-left" class="text-success mb-4">Bewerbung</h1>
+                    <h2 class="text-success mb-4">Bewerbung</h2>
                     <p> Werden Sie Teil unseres engagierten Teams und gestalten Sie die Zukunft
                         der
                         Physiotherapie mit uns! </p>
@@ -454,113 +397,38 @@
     </section>
     <!-- END: Bewerbung -->
 
+    </main>
     <!--START: Back to Top Button-->
-    <a href="#home" class="btn btn-outline-success btn-round smooth" role="button" id="back-to-top-button">
+    <a href="#home" class="btn btn-outline-success btn-round smooth" aria-label="Zurück nach oben" id="back-to-top-button">
         <span class="icon-arrow-up"> </span>
     </a>
     <!--END  Back to Top Button-->
 
-    <!-- START: Cookies Banner Modal -->
-    <div class="modal fade" id="cookiesBannerModal" tabindex="-1" aria-labelledby="cookiesBannerModalLabel"
-        role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title text-success ml-3" id="cookiesBannerModalLabel">Wir verwenden Cookies</h3>
-                    <button type="button" class="close mr-3" data-dismiss="modal" aria-label="Close">
-                        <span class="icon-close" aria-hidden="true"> </span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Wir verwenden Cookies, um Ihnen das beste Erlebnis auf unserer Website zu bieten. Durch die
-                        Nutzung unserer Website stimmen Sie der Verwendung von Cookies zu.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-success btn-round"
-                        data-dismiss="modal">Ablehnen</button>
-                    <button type="button" class="btn btn-success btn-round"
-                        onclick="acceptCookies()">Akzeptieren</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- END: Cookies Banner Modal -->
-
-
-    <!-- START: Email Success Toast -->
-    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1060;">
-        <div id="emailSuccessToast" class="toast bg-success text-white border-0 shadow-lg" role="alert"
-            aria-live="assertive" aria-atomic="true" data-animation="true" data-autohide="true" data-delay="5000">
-            <div class="toast-header bg-success text-white">
-                <i class="fa fa-check-circle mr-2"></i>
-                <strong class="mr-auto">Erfolg</strong>
-                <button type="button" class="ml-2 mb-1 close text-white" data-dismiss="toast" aria-label="Schließen">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="toast-body">
-                E-Mail erfolgreich gesendet!
-            </div>
-        </div>
-    </div>
-    <!-- END: Email Success Toast -->
-
-    <!--START: Floating Action Button-->
-    <div class="fab-container">
-
-        <!-- Sub-Buttons -->
-        <div class="fab-menu d-none py-1 px-0 smooth">
-            <button type="button" class="btn btn-success mb-2 fab-sub" id="fabAnfahrt">
-                <i class="icon-location-pin me-2"></i> Anfahrt
-            </button>
-            <button type="button" class="btn btn-success mb-2 fab-sub" id="fabTelefon">
-                <i class="icon-phone me-2"></i> Telefon
-            </button>
-
-            <button type="button" class="btn btn-success  fab-sub" id="fabEmail">
-                <i class="icon-envelope me-2"></i> E-Mail
-            </button>
-        </div>
-    </div>
-    <!--END: Floating Action Button-->
-
+    <aside class="fab-container" aria-label="Schnellkontakt">
+        <a class="btn btn-success" href="tel:+4967197029941"><span class="icon-phone" aria-hidden="true"></span> Anrufen</a>
+        <a class="btn btn-success" href="https://maps.google.com/?q=Traubenstra%C3%9Fe+16%2C+55545+Bad+Kreuznach" target="_blank" rel="noopener noreferrer">Anfahrt <span class="sr-only">(neuer Tab)</span></a>
+    </aside>
     <!-- START: Footer -->
     <footer>
         <div class="container-fluid bg-dark bg-gradient text-white py-3">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <a href="https://www.facebook.com/" target="_blank" class="text-white px-2">
-                        <span class="icon-social-facebook h4"> </span>
-                    </a>
-                    <a href="#" class="text-white px-2">
-                        <span class="icon-social-twitter h4"> </span> </a>
+                    <p><a class="text-white" href="datenschutz.html">Datenschutz</a> · <a class="text-white" href="#impressum">Impressum</a></p>
                     <p class="mb-0"> &copy;
-                        <span id="year"> 2000 </span>
+                        <span data-year>2026</span>
                         Bill &amp; Co. All Rights Reserved.
                     </p>
                     <p class="mt-0">
-                        Created & Designed by <a href="https://ghislain1.github.io./home" target="_blank"
+                        Created & Designed by <a href="https://ghislain1.github.io/home" target="_blank" rel="noopener noreferrer"
                             class="text-success">Ghislain Z.</a>
                     </p>
                 </div>
             </div>
+        </div>
     </footer>
     <!-- ENDE: Footer -->
 
-    <!-- jQuery (must come first) -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-    <!-- POPPER JS -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@4.6.2/dist/umd/popper.min.js"></script>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
-
-    <!--AOS Animation on Scroll Library-->
-    <script src="../node_modules/aos/dist/aos.js"></script>
-
-    <!--Custom JS-->
-    <script src="js/script.js"></script>
+    <script type="module" src="js/script.js"></script>
 </body>
 
 </html>

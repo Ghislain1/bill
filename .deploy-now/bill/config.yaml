@@ -1,0 +1,8 @@
+version: 1.0
+deploy:
+  bootstrap:
+    excludes:
+      - .template-renderer-data
+  recurring:
+    excludes:
+      - .template-renderer-data

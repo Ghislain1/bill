@@ -7,8 +7,16 @@ name: "Deploy Now: Orchestration"
 run-name: "Deploy Now: Build bill · ${{ github.event.head_commit.message || format('Triggered by {0}', github.triggering_actor) }}"
 
 on:
-  - push
-  - workflow_dispatch
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ionos-production
+  cancel-in-progress: false
 
 jobs:
   retrieve-project:
