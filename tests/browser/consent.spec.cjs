@@ -2,7 +2,6 @@ const { test, expect } = require('@playwright/test');
 const fs = require('node:fs');
 const path = require('node:path');
 const key = 'bill_physio_visit_consent_v2';
-const transitionKey = 'bill_physio_visit_transition_v2';
 const version = '2026-09-26-ga4-visit-v2';
 const lifetime = 30 * 60000;
 const root = path.resolve('dist');
@@ -183,18 +182,10 @@ test('read-only storage cannot reactivate an old acceptance', async ({ page, con
 test('an acceptance expires while the page remains open', async ({ page, context }) => {
   const seen = await sandboxProduction(context);
   await page.clock.install();
-  await context.addInitScript(({ key, version, lifetime, transitionKey }) => {
-    // Preserve the initial record across the automatic reload after expiry.
-    if (!sessionStorage.getItem('consent-expiry-test')) {
-      const timestamp = Date.now() - lifetime + 10000;
-      sessionStorage.setItem(key, JSON.stringify({ version, analytics: true, timestamp, expiresAt: timestamp + lifetime }));
-      sessionStorage.setItem(transitionKey, JSON.stringify({ path: '/', type: 'link', timestamp: Date.now() }));
-      sessionStorage.setItem('consent-expiry-test', 'started');
-    }
-  }, { key, version, lifetime, transitionKey });
   await page.goto('https://bill-physio.de/');
+  await allow(page).click();
   await expect.poll(() => seen.events.length).toBe(1);
-  await Promise.all([page.waitForEvent('load'), page.clock.fastForward(11000)]);
+  await Promise.all([page.waitForEvent('load'), page.clock.fastForward(lifetime + 1000)]);
   await expect(page.getByRole('dialog')).toBeVisible();
   expect(await page.evaluate(() => window['ga-disable-G-MN2KJN5SSK'])).toBe(true);
   expect(await context.cookies()).toEqual([]);
