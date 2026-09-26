@@ -239,7 +239,7 @@ section { padding: 90px 0; scroll-margin-top: var(--navigation-offset); }
 .navbar-brand { width: 224px; text-align: center; white-space: normal; }
 .navbar-brand-logo { display: block; height: 51px; overflow: hidden; }
 .navbar-brand img { display: block; width: 224px; height: 172px; transform: translateY(-57px); }
-.navbar-brand-tagline { display: block; padding: 0 0 8px; color: #ffa800; font-size: 12px; line-height: 1.4; }
+.navbar-brand-tagline { display: block; padding: 0 0 8px; color: #fff; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 12px; font-weight: 700; line-height: 1.4; }
 .navbar.bg-white { background-color: #fff; }
 .navbar.bg-white .navbar-brand-tagline { color: #04542d; font-weight: 700; }
 .navbar.bg-white .navbar-nav .nav-link { color: #04542d; font-weight: 700; }
