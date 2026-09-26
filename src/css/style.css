@@ -239,7 +239,7 @@ section { padding: 90px 0; scroll-margin-top: var(--navigation-offset); }
 .navbar-brand { width: 224px; text-align: center; white-space: normal; }
 .navbar-brand-logo { display: block; height: 51px; overflow: hidden; }
 .navbar-brand img { display: block; width: 224px; height: 172px; transform: translateY(-57px); }
-.navbar-brand-tagline { display: block; padding: 0 0 8px; color: #fff; font-size: 12px; line-height: 1.4; }
+.navbar-brand-tagline { display: block; padding: 0 0 8px; color: #f0a68f; font-size: 12px; line-height: 1.4; }
 .navbar-dark .navbar-nav .nav-link { color: #f8f9fa; }
 .navbar .navbar-nav .nav-link:focus-visible, a:focus-visible, button:focus-visible { outline: 3px solid #d88b00; outline-offset: 4px; }
 .hero-bg { padding: calc(var(--navigation-offset) + 20px) 0 80px; display: flex; align-items: center; background: #dbe8de; }
