@@ -242,6 +242,7 @@ section { padding: 90px 0; scroll-margin-top: var(--navigation-offset); }
 .navbar-brand-tagline { display: block; padding: 0 0 8px; color: #ff7a00; font-size: 12px; line-height: 1.4; }
 .navbar.bg-white { background-color: #fff; }
 .navbar.bg-white .navbar-brand-tagline { color: #04542d; font-weight: 700; }
+.navbar.bg-white .navbar-nav .nav-link { color: #04542d; font-weight: 700; }
 .navbar-dark .navbar-nav .nav-link { color: #f8f9fa; }
 .navbar .navbar-nav .nav-link:focus-visible, a:focus-visible, button:focus-visible { outline: 3px solid #d88b00; outline-offset: 4px; }
 .hero-bg { padding: calc(var(--navigation-offset) + 20px) 0 80px; display: flex; align-items: center; background: #dbe8de; }
