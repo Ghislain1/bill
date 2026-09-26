@@ -41,8 +41,8 @@ async function sandboxProduction(context) {
   });
   return seen;
 }
-const allow = page => page.getByRole('button', { name: 'Statistik erlauben', exact: true });
-const deny = page => page.getByRole('button', { name: 'Statistik ablehnen', exact: true });
+const allow = page => page.getByRole('button', { name: 'Cookies erlauben', exact: true });
+const deny = page => page.getByRole('button', { name: 'Cookies ablehnen', exact: true });
 const settings = page => page.getByRole('button', { name: 'Cookie-Einstellungen', exact: true });
 
 test('no Google request before choice; each reload or direct visit asks again', async ({ page, context }) => {

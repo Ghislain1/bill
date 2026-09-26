@@ -15,7 +15,7 @@ for (const route of ['/', '/videos.html', '/datenschutz.html']) {
     if (route !== '/datenschutz.html') {
       await expect(page.getByRole('dialog')).toBeVisible();
       expect((await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze()).violations).toEqual([]);
-      await page.getByRole('button', { name: 'Statistik ablehnen', exact: true }).click();
+      await page.getByRole('button', { name: 'Cookies ablehnen', exact: true }).click();
     }
     await expect(page.locator('h1')).toBeVisible();
     for (const image of await page.locator('img').all()) {
@@ -40,7 +40,7 @@ for (const route of ['/', '/videos.html', '/datenschutz.html']) {
 }
 test('contact links and mobile menu work', async ({ page }, testInfo) => {
   await page.goto('/');
-  const consent = page.getByRole('button', { name: 'Statistik ablehnen', exact: true });
+  const consent = page.getByRole('button', { name: 'Cookies ablehnen', exact: true });
   if (await consent.isVisible()) await consent.click();
   if (testInfo.project.name === 'mobile') {
     const toggle = page.locator('.navbar-toggler');
@@ -72,7 +72,7 @@ test('content remains usable without JavaScript', async ({ browser, baseURL }) =
 });
 test('videos play automatically without play buttons', async ({ page }) => {
   await page.goto('/');
-  const consent = page.getByRole('button', { name: 'Statistik ablehnen', exact: true });
+  const consent = page.getByRole('button', { name: 'Cookies ablehnen', exact: true });
   if (await consent.isVisible()) await consent.click();
   await expect(page.locator('[data-video-toggle]')).toHaveCount(0);
   for (const id of ['home-video', 'about-video']) {
@@ -95,7 +95,7 @@ test('legacy analytics cookies and consent are cleared on return visits', async 
     localStorage.setItem('unrelated-setting', 'keep');
   });
   await page.goto('/');
-  const consent = page.getByRole('button', { name: 'Statistik ablehnen', exact: true });
+  const consent = page.getByRole('button', { name: 'Cookies ablehnen', exact: true });
   if (await consent.isVisible()) await consent.click();
   await expect(page.locator('#kontakt a[href="tel:+4967197029941"]')).toBeVisible();
   expect(await page.evaluate(() => localStorage.getItem('Bill_Cookies_82026'))).toBeNull();
@@ -106,12 +106,12 @@ test('legacy analytics cookies and consent are cleared on return visits', async 
 
 test('patients and applicants can read the relevant privacy information before contact', async ({ page }) => {
   await page.goto('/');
-  const consent = page.getByRole('button', { name: 'Statistik ablehnen', exact: true });
+  const consent = page.getByRole('button', { name: 'Cookies ablehnen', exact: true });
   if (await consent.isVisible()) await consent.click();
   await page.locator('#kontakt a[href="datenschutz.html"]').click();
   await expect(page.locator('h1')).toHaveText('Datenschutzerklärung');
   await page.goto('/');
-  await page.getByRole('button', { name: 'Statistik ablehnen', exact: true }).click();
+  await page.getByRole('button', { name: 'Cookies ablehnen', exact: true }).click();
   await page.locator('#bewerbung a[href="datenschutz.html#bewerbungen"]').click();
   await expect(page.locator('#bewerbungen')).toBeVisible();
   await expect(page).toHaveURL(/datenschutz\.html#bewerbungen$/);

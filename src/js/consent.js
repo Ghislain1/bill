@@ -24,7 +24,7 @@ export function initializeConsent() {
     dialog.setAttribute('aria-labelledby', 'cookie-title');
     dialog.setAttribute('aria-describedby', 'cookie-description');
     dialog.innerHTML = `
-        <button type="button" class="cookie-close" aria-label="Ohne Statistik schließen">×</button>
+        <button type="button" class="cookie-close" aria-label="Ohne Cookies schließen">×</button>
         <p class="cookie-eyebrow">BILL PHYSIO · DATENSCHUTZ</p>
         <h2 id="cookie-title">Ihre Cookie-Auswahl</h2>
         <p id="cookie-description">Dürfen wir Google Analytics für freiwillige Besuchsstatistiken verwenden? Damit erfahren wir, wie unsere Website genutzt wird, und können sie verbessern.</p>
@@ -33,8 +33,8 @@ export function initializeConsent() {
         <p><a href="datenschutz.html#statistik">Details in der Datenschutzerklärung</a></p>
         <p class="cookie-status" aria-live="polite"></p>
         <div class="cookie-actions">
-            <button type="button" class="cookie-choice" data-consent="deny">Statistik ablehnen</button>
-            <button type="button" class="cookie-choice" data-consent="allow">Statistik erlauben</button>
+            <button type="button" class="cookie-choice" data-consent="deny">Cookies ablehnen</button>
+            <button type="button" class="cookie-choice" data-consent="allow">Cookies erlauben</button>
         </div>`;
     document.body.append(dialog);
     const status = dialog.querySelector('.cookie-status');
@@ -54,8 +54,8 @@ export function initializeConsent() {
     }
 
     function openSettings() {
-        status.textContent = choice?.analytics === true ? 'Aktuell: Statistik erlaubt. Mit „Statistik ablehnen“ widerrufen Sie Ihre Einwilligung.' :
-            choice?.analytics === false ? 'Aktuell: Statistik abgelehnt.' : 'Aktuell: Google Analytics ist deaktiviert.';
+        status.textContent = choice?.analytics === true ? 'Aktuell: Cookies erlaubt. Mit „Cookies ablehnen“ widerrufen Sie Ihre Einwilligung.' :
+            choice?.analytics === false ? 'Aktuell: Cookies abgelehnt.' : 'Aktuell: Google Analytics ist deaktiviert.';
         if (!dialog.open) dialog.showModal();
     }
 
