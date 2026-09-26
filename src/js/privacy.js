@@ -1,6 +1,5 @@
 // Remove only identifiers used by the former Bill-Physio consent/GA integration.
-// No analytics library, consent value or new visitor identifier is created.
-export function removeLegacyTracking(storage, cookieDocument, location) {
+export function removeLegacyConsent(storage) {
     try {
         for (let index = storage.length - 1; index >= 0; index -= 1) {
             const key = storage.key(index);
@@ -12,6 +11,9 @@ export function removeLegacyTracking(storage, cookieDocument, location) {
         // Privacy mode or blocked storage must not prevent navigation/contact.
     }
 
+}
+
+export function removeAnalyticsCookies(cookieDocument, location) {
     const domains = ['', location.hostname];
     if (location.hostname === 'bill-physio.de' || location.hostname.endsWith('.bill-physio.de')) {
         domains.push('bill-physio.de');
@@ -25,4 +27,9 @@ export function removeLegacyTracking(storage, cookieDocument, location) {
             }
         }
     }
+}
+
+export function removeLegacyTracking(storage, cookieDocument, location) {
+    removeLegacyConsent(storage);
+    removeAnalyticsCookies(cookieDocument, location);
 }

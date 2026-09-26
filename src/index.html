@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com/gtag/; style-src 'self'; img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com; font-src 'self'; media-src 'self'; connect-src https://*.google-analytics.com https://*.google.com https://www.googletagmanager.com; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
     <meta name="referrer" content="no-referrer">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="../node_modules/simple-line-icons/css/simple-line-icons.css">
     <!--Custom Css-->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/consent.css">
     <noscript><link rel="stylesheet" href="css/nojs.css"></noscript>
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "MedicalBusiness", "@id": "https://bill-physio.de/#praxis", "name": "Bill-Physio", "url": "https://bill-physio.de/", "telephone": "+49 671 97029941", "email": "kontakt@bill-physio.de", "address": {"@type": "PostalAddress", "streetAddress": "Traubenstraße 16", "postalCode": "55545", "addressLocality": "Bad Kreuznach", "addressCountry": "DE"}}</script>
@@ -34,12 +35,14 @@
     <a class="skip-link" href="#main">Zum Inhalt springen</a>
     <!-- START: Navigation -->
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-gradient fixed-top py-0">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-0">
 
             <div class="container">
                 <a href="#home" class="navbar-brand font-alt smooth">
-                    <img src="img/logo.svg" alt="Bill-Physio – Startseite" class="svg-bg rounded-circle" width="200"
-                        height="155">
+                    <span class="navbar-brand-logo">
+                        <img src="img/logo.svg" alt="Bill-Physio – Startseite" width="200" height="155">
+                    </span>
+                    <span class="navbar-brand-tagline">Praxis für Physiotherapie und Massage</span>
                 </a>
                 <button class="navbar-toggler btn-round" type="button" data-toggle="collapse"
                     data-target="#navbar-toggle" aria-controls="navbar-toggle" aria-label="Menü öffnen oder schließen" aria-expanded="false">
@@ -420,7 +423,7 @@
                 </div>
             </div>
         </div>
-    </footer>
+    <div class="container text-center py-2"><button type="button" class="cookie-settings" data-cookie-settings hidden>Cookie-Einstellungen</button><noscript><p>Google Analytics ist ohne JavaScript deaktiviert.</p></noscript></div></footer>
     <!-- ENDE: Footer -->
 
     <script type="module" src="js/script.js"></script>

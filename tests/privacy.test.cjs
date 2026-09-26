@@ -49,23 +49,24 @@ test('blocked browser storage/cookies cannot break contact or navigation', async
   }
 });
 
-test('all pages block form submissions, connections and frames even without hosting headers', () => {
+test('all pages block forms and frames with a restricted Analytics allowlist', () => {
   const headers = JSON.parse(fs.readFileSync('vercel.json', 'utf8')).headers[0].headers;
   const serverPolicy = headers.find(header => header.key === 'Content-Security-Policy').value;
   for (const file of ['index.html', 'datenschutz.html', 'videos.html']) {
     const html = fs.readFileSync('src/' + file, 'utf8');
     const policy = html.match(/http-equiv="Content-Security-Policy" content="([^"]+)"/)[1];
-    for (const directive of ["connect-src 'none'", "frame-src 'none'", "form-action 'none'", "base-uri 'none'"]) {
+    for (const directive of ["frame-src 'none'", "form-action 'none'", "base-uri 'none'"]) {
       assert.ok(policy.includes(directive));
       assert.ok(serverPolicy.includes(directive));
     }
+    assert.doesNotMatch(policy, /unsafe-inline|unsafe-eval|doubleclick|formsubmit/);
     assert.ok(html.indexOf('Content-Security-Policy') < html.indexOf('<link'));
     assert.match(html, /name="referrer" content="no-referrer"/);
-    assert.doesNotMatch(html, /<form\b|emailSuccessToast|cookiesBannerModal|googletagmanager\.com/i);
+    assert.doesNotMatch(html, /<form\b|emailSuccessToast|cookiesBannerModal/i);
   }
   for (const file of ['public/.htaccess', 'scripts/serve.cjs']) {
     const content = fs.readFileSync(file, 'utf8');
-    assert.match(content, /connect-src 'none'/);
+    assert.match(content, /connect-src https:\/\/\*\.google-analytics\.com/);
     assert.match(content, /form-action 'none'/);
     assert.match(content, /no-referrer/);
   }

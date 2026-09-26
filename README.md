@@ -46,12 +46,24 @@ Git integrations configured in hosting dashboards are separate from GitHub workf
 
 ## Privacy and contact
 
-No Analytics, third-party scripts, remote fonts, new browser identifiers or patient-data form.
-Known cookies and consent entries from the former integration are removed on return
-visits without retaining their values. Both HTTP headers and HTML fallback policies
-block form submissions, script connections and embedded frames. Contact remains usable
-if browser storage is blocked. IONOS may generate statistics from server logs; these
-are distinct from browser analytics and are described in the privacy notice.
+Google Analytics (`G-MN2KJN5SSK`) loads only after an explicit, current statistics
+consent, only on HTTPS bill-physio.de/www.bill-physio.de. No Google request occurs
+before acceptance or after refusal (basic consent mode). Equal accept/refuse buttons,
+a close/escape refusal, and persistent footer settings allow visitors to change their
+choice. Choices expire after 180 days; withdrawal deletes known Analytics cookies and
+reloads a page that had loaded the tag. Other tabs observe changes. Legacy monthly
+consent is never reused. Blocked storage preserves navigation and current-page choice.
+
+Page views use known public paths, fixed titles and an empty referrer, without URL
+queries or fragments. Ad storage, ad personalization and Google Signals are disabled
+in code. GA property settings, processing terms and server retention still require
+account verification before release; see PRIVACY-RELEASE.md. Preview/local acceptance
+never sends real production statistics. Browser tests intercept all Google traffic.
+
+No patient-data form, remote fonts or advertising integration is present. HTTP and
+HTML Content Security Policies allow only the required Analytics hosts for scripts
+and connections; forms and embedded frames stay blocked. IONOS server-log statistics
+are distinct from browser Analytics and are described in the privacy notice.
 Appointments are arranged by phone; email is for general organizational questions.
 The two practice videos play automatically, muted and looping. Maps is an external link.
 
