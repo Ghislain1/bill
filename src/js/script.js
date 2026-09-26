@@ -27,25 +27,3 @@ updateScroll();
 document.querySelectorAll('[data-year]').forEach((element) => {
     element.textContent = String(new Date().getFullYear());
 });
-// Videos only download after the visitor presses play.
-document.querySelectorAll('[data-video-toggle]').forEach((button) => {
-    const video = document.getElementById(button.dataset.videoToggle);
-    button.addEventListener('click', async () => {
-        if (!video) return;
-        if (!video.paused) {
-            video.pause();
-            button.textContent = 'Video abspielen';
-            button.setAttribute('aria-pressed', 'false');
-            return;
-        }
-        try {
-            if (!video.src) video.src = video.querySelector('a').href;
-            await video.play();
-            button.textContent = 'Video pausieren';
-            button.setAttribute('aria-pressed', 'true');
-        } catch {
-            button.textContent = 'Video erneut laden';
-            button.setAttribute('aria-pressed', 'false');
-        }
-    });
-});

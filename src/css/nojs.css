@@ -1,5 +1,5 @@
 .navbar-collapse.collapse { display: block; }
-.navbar-toggler, [data-video-toggle] { display: none; }
+.navbar-toggler { display: none; }
 @media (max-width: 991px) {
     .navbar.fixed-top { position: static; }
     .hero-bg { padding-top: 50px; }

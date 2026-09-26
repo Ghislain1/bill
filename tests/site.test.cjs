@@ -10,7 +10,7 @@ for (const page of pages) {
     assert.match(html, /<main\b/);
     assert.match(html, /name="description"/);
     assert.match(html, /rel="canonical"/);
-    assert.doesNotMatch(html, /googletagmanager|gtag\(|formsubmit\.co|<form\b|onclick=|\bautoplay\b/i);
+    assert.doesNotMatch(html, /googletagmanager|gtag\(|formsubmit\.co|<form\b|onclick=/i);
     for (const match of html.matchAll(/<(?:script|link|img|source)\b[^>]*(?:src|href)="([^"]+)"/g)) {
       const ref = match[1];
       if (/^https:/.test(ref)) { assert.match(match[0], /rel="canonical"/); continue; }

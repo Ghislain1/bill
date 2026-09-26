@@ -67,3 +67,9 @@ entire repository secrets object into deployment files. That step and unnecessar
 URL rewriting were removed; the SSH secret selector now validates its input and
 passes it through a shell environment variable. No security gate was bypassed.
 IONOS approval/account connection and deployment to bill-physio.de remain external.
+
+## Requested video adjustment
+
+The two practice videos now autoplay muted in a loop. The play buttons and their
+JavaScript handlers were removed at the owner's request. Privacy wording and
+browser checks have been updated to match.

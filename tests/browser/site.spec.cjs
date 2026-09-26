@@ -26,7 +26,7 @@ for (const route of ['/', '/videos.html', '/datenschutz.html']) {
     expect(errors).toEqual([]);
     expect(failed).toEqual([]);
     expect(external).toEqual([]);
-    expect(media).toEqual([]);
+    if (route !== '/') expect(media).toEqual([]);
     expect(await page.evaluate(() => localStorage.length)).toBe(0);
     expect(await page.context().cookies()).toEqual([]);
   });
@@ -61,14 +61,18 @@ test('content remains usable without JavaScript', async ({ browser, baseURL }) =
   expect(failed).toEqual([]);
   await context.close();
 });
-test('video loads only on request and can be paused', async ({ page }) => {
+test('videos play automatically without play buttons', async ({ page }) => {
   await page.goto('/');
-  const button = page.locator('[data-video-toggle="home-video"]');
-  const video = page.locator('#home-video');
-  await expect(video).not.toHaveAttribute('src');
-  await button.click();
-  await expect(button).toHaveAttribute('aria-pressed', 'true');
-  await expect(video).toHaveJSProperty('paused', false);
-  await button.click();
-  await expect(video).toHaveJSProperty('paused', true);
+  await expect(page.locator('[data-video-toggle]')).toHaveCount(0);
+  for (const id of ['home-video', 'about-video']) {
+    const video = page.locator('#' + id);
+    await expect(video).toHaveJSProperty('autoplay', true);
+    await expect(video).toHaveJSProperty('muted', true);
+    await expect(video).toHaveJSProperty('loop', true);
+    if (await video.isVisible()) {
+      await video.scrollIntoViewIfNeeded();
+      await expect(video).toHaveJSProperty('paused', false);
+      await expect.poll(() => video.evaluate(el => el.currentTime)).toBeGreaterThan(0);
+    }
+  }
 });

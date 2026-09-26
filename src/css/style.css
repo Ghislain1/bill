@@ -244,7 +244,7 @@ section { padding: 90px 0; scroll-margin-top: 110px; }
 .card-img-top { aspect-ratio: 3 / 2; object-fit: cover; height: auto; }
 .card-title { font-size: 1.25rem; }
 #ueber-uns .img-bg { top: 90px; bottom: 90px; width: 46%; }
-#ueber-uns video { height: calc(100% - 50px); object-fit: cover; }
+#ueber-uns video { height: 100%; object-fit: cover; }
 .text-success { color: #176b36 !important; }
 .btn-success { background-color: #176b36; border-color: #176b36; }
 .btn-outline-success { color: #176b36; border-color: #176b36; }

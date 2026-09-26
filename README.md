@@ -48,7 +48,7 @@ Git integrations configured in hosting dashboards are separate from GitHub workf
 
 No Analytics, third-party scripts, remote fonts, browser storage or patient-data form.
 Appointments are arranged by phone; email is for general organizational questions.
-Videos are downloaded only on explicit playback. Maps is an external link.
+The two practice videos play automatically, muted and looping. Maps is an external link.
 
 Original images remain in src/img for future edits; production uses optimized WebP.
 Bootstrap 4 CSS is retained to preserve the existing layout; its JavaScript and jQuery
