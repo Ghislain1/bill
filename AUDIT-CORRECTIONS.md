@@ -57,3 +57,13 @@ checks do not establish full accessibility or legal compliance.
 - MPhG: https://www.gesetze-im-internet.de/mphg/
 - IONOS configuration: https://docs.ionos.space/docs/deployment-configuration/
 - IONOS reference: https://raw.githubusercontent.com/ionos-deploy-now/laravel-starter/main/.deploy-now/config.yaml
+
+## Deployment follow-up
+
+PR #1 was merged after all GitHub/Linux checks passed. Vercel production deployed
+commit b1671a3. GitHub flagged the inherited IONOS deployment workflow for a security
+review. The static site does not need its template-renderer step, which passed the
+entire repository secrets object into deployment files. That step and unnecessary
+URL rewriting were removed; the SSH secret selector now validates its input and
+passes it through a shell environment variable. No security gate was bypassed.
+IONOS approval/account connection and deployment to bill-physio.de remain external.

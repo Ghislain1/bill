@@ -27,3 +27,10 @@ test('reproducible build and single production pipeline', () => {
   assert.match(fs.readFileSync('.github/workflows/bill-build.yaml', 'utf8'), /npm ci/);
   assert.ok(fs.existsSync('.deploy-now/bill/config.yaml'));
 });
+
+test('static deployment never expands all repository secrets into files', () => {
+  const workflow = fs.readFileSync('.github/workflows/deploy-to-ionos.yaml', 'utf8');
+  assert.doesNotMatch(workflow, /toJson\(secrets\)|template-renderer-action/);
+  assert.match(workflow, /DEPLOYMENT_ID:/);
+  assert.doesNotMatch(workflow, /run:.*\$\{\{ matrix/);
+});
