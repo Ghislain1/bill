@@ -2,6 +2,15 @@ body {
     position: relative;
 }
 
+/* Terracotta hand for actionable controls; keep the native text caret. */
+a[href], button:not(:disabled), .btn:not(:disabled):not(.disabled),
+[type="button"]:not(:disabled), [role="button"]:not([aria-disabled="true"]),
+summary, select:not(:disabled), input[type="submit"]:not(:disabled),
+input[type="button"]:not(:disabled), input[type="checkbox"]:not(:disabled),
+input[type="radio"]:not(:disabled) {
+    cursor: url("../img/cursor-pointer.svg") 12 4, pointer;
+}
+
 body,
 p {
     font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
