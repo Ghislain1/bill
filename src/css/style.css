@@ -250,8 +250,8 @@ section { padding: 90px 0; scroll-margin-top: 110px; }
 .btn-outline-success { color: #176b36; border-color: #176b36; }
 .btn-outline-success:hover { background-color: #176b36; border-color: #176b36; }
 #angebote > .container > .row:first-child .text-success, #impressum .text-success, footer .text-success { color: #84dfa3 !important; }
-.fab-container { right: 16px; bottom: 16px; display: flex; gap: 8px; }
-#back-to-top-button { bottom: 72px; right: 16px; background: white; }
+.fab-container { right: 16px; bottom: 16px; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+#back-to-top-button { bottom: 162px; right: 16px; background: white; }
 footer { padding-bottom: 65px; }
 .skip-link { position: fixed; top: -100px; left: 12px; z-index: 2000; background: white; padding: 12px; color: #176b36; }
 .skip-link:focus { top: 12px; }
