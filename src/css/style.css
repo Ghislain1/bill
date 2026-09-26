@@ -233,9 +233,12 @@ input.form-control:hover {
 
 /* END: Floating Action Buttons */
 /* Fixed navigation, readable video overlay, and keyboard access. */
-html { --navigation-offset: 196px; scroll-behavior: smooth; scroll-padding-top: var(--navigation-offset); }
+html { --navigation-offset: 236px; scroll-behavior: smooth; scroll-padding-top: var(--navigation-offset); }
 section { padding: 90px 0; scroll-margin-top: var(--navigation-offset); }
+.navbar { background-color: #04542d; }
+.navbar-brand { width: 224px; text-align: center; white-space: normal; }
 .navbar-brand img { width: 224px; height: 172px; }
+.navbar-brand-tagline { display: block; padding: 0 0 8px; color: #fff; font-size: 12px; line-height: 1.4; }
 .navbar-dark .navbar-nav .nav-link { color: #f8f9fa; }
 .navbar .navbar-nav .nav-link:focus-visible, a:focus-visible, button:focus-visible { outline: 3px solid #d88b00; outline-offset: 4px; }
 .hero-bg { padding: calc(var(--navigation-offset) + 20px) 0 80px; display: flex; align-items: center; background: #dbe8de; }
@@ -260,8 +263,10 @@ footer { padding-bottom: 65px; }
 a { color: #176b36; }
 p a:not(.btn), address a, footer a { text-decoration: underline; }
 @media (min-width: 1200px) {
-    html { --navigation-offset: 282px; }
+    html { --navigation-offset: 314px; }
+    .navbar-brand { width: 336px; }
     .navbar-brand img { width: 336px; height: 258px; }
+    .navbar-brand-tagline { font-size: 14px; }
 }
 @media (max-width: 991px) {
     .navbar-collapse { padding-bottom: 12px; }
