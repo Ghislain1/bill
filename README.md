@@ -50,9 +50,15 @@ Google Analytics (`G-MN2KJN5SSK`) loads only after an explicit, current statisti
 consent, only on HTTPS bill-physio.de/www.bill-physio.de. No Google request occurs
 before acceptance or after refusal (basic consent mode). Equal accept/refuse buttons,
 a close/escape refusal, and persistent footer settings allow visitors to change their
-choice. Choices expire after 180 days; withdrawal deletes known Analytics cookies and
-reloads a page that had loaded the tag. Other tabs observe changes. Legacy monthly
-consent is never reused. Blocked storage preserves navigation and current-page choice.
+choice. Every fresh entry, manual reload, reopened tab or history restoration asks
+again even with a warm cache. Only a just-clicked internal link continues the current
+visit, using a single-use sessionStorage transition marker. Choices last at most
+30 minutes; persistent 180-day and legacy monthly preferences are discarded. GA
+cookies are session cookies. Withdrawal deletes these cookies and reloads a page
+that had loaded the tag. Refusals propagate to other opted-in tabs via BroadcastChannel;
+acceptance never propagates to new tabs. Blocked storage preserves current-page choice.
+HTML is revalidated by the browser; hashed assets can remain cached. The privacy notice
+is readable before a choice, without an automatic modal.
 
 Page views use known public paths, fixed titles and an empty referrer, without URL
 queries or fragments. Ad storage, ad personalization and Google Signals are disabled

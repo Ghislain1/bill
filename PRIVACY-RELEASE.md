@@ -29,12 +29,17 @@ L'absence de clé empêche actuellement de vérifier les étapes IONOS suivantes
 - Mode de consentement **basique** : aucun chargement Google ni ping sans accord.
   Propriété conservée : `G-MN2KJN5SSK`. Activation limitée aux adresses HTTPS
   `bill-physio.de` et `www.bill-physio.de`, jamais sur les aperçus Vercel/locaux.
-- Accord et refus versionnés, valables 180 jours. Aucun renouvellement automatique
-  de cette durée à chaque visite. Les cookies `_ga` et `_ga_MN2KJN5SSK` sont limités
-  au temps restant. Les anciennes préférences `Bill_Cookies_…` ne valent jamais
-  consentement. Un stockage bloqué ou en lecture seule ne réactive pas un ancien accord.
+- À la demande de l’exploitant, chaque nouvelle entrée sur le site, actualisation,
+  réouverture d’onglet ou retour d’historique affiche à nouveau le choix, même avec
+  le cache conservé. Seuls les liens internes continuent la visite actuelle.
+  L’accord/refus reste dans sessionStorage pour 30 minutes au maximum ; un marqueur
+  de navigation à usage unique, valable 30 secondes, évite de redemander à chaque lien.
+  Les cookies `_ga` et `_ga_MN2KJN5SSK` deviennent des cookies de session. Les anciennes
+  préférences mensuelles et le précédent choix de 180 jours sont supprimés.
+  Un stockage bloqué ou en lecture seule ne réactive jamais un ancien accord.
 - Retrait : arrêt du tag, suppression ciblée des cookies, rechargement d'une page
-  qui avait chargé Analytics, synchronisation entre onglets et gestion de l'expiration.
+  qui avait chargé Analytics, propagation des refus aux autres onglets déjà consentants
+  et gestion de l’expiration. Un nouvel onglet doit donner son propre accord.
   Les autres données du navigateur restent intactes. Cela n'efface pas les données
   historiques des serveurs de Google ou de FormSubmit.
 - Mesures de pages avec chemins connus et titres fixes, sans paramètres d'URL,
@@ -57,7 +62,9 @@ Consulter le statut de la PR pour les résultats du commit final. Les tests n'en
 aucun e-mail et ne contactent pas FormSubmit. Les tests Analytics servent le vrai build
 sur une origine de production simulée et interceptent tous les appels Google. Ils
 vérifient le déclenchement, le contenu préparé, le refus, le retrait, plusieurs onglets,
-l'expiration et le stockage indisponible. Ils ne prouvent pas la réception d'événements
+l’expiration, le stockage indisponible, les nouvelles visites avec cache HTTP conservé
+et les retours d’historique. Le chemin pageshow.persisted est également testé par un
+événement simulé, car le navigateur CI peut désactiver son cache de navigation. Ils ne prouvent pas la réception d'événements
 dans le compte Google ni la configuration distante de la propriété.
 
 ## Réglages Google à vérifier avant publication
@@ -75,8 +82,8 @@ pas modifier ces réglages ni vérifier les accords de l'exploitant :
 4. Vérifier la durée réelle de conservation des données utilisateur/événement et la
    préciser dans `src/datenschutz.html` avant publication. Recommandation pour ce
    besoin de statistiques générales : **2 mois**, sans réinitialisation à chaque
-   nouvelle activité. Les rapports agrégés ont un traitement distinct. Les 180 jours
-   définis par le code concernent le choix et les cookies, pas les serveurs Google.
+   nouvelle activité. Les rapports agrégés ont un traitement distinct. La durée de
+   30 minutes concerne le choix de visite, pas la conservation sur les serveurs Google.
    Le texte actuel donne un critère général ; la durée du compte n'a pas été inventée.
 5. Vérifier l'accord de sous-traitance Google et les mécanismes de transfert applicables
    au compte ; compléter les informations nécessaires dans la notice. Les liens vers
@@ -134,3 +141,13 @@ formulaire tiers ; ne pas réécrire l'historique Git.
 Ces modifications réduisent les risques techniques constatés et améliorent
 l'information. Elles ne constituent pas une certification de conformité globale
 des traitements de la Praxis ni des comptes d'hébergement.
+
+## Retour du pop-up et cache
+
+Le cache HTTP et le consentement sont indépendants. Les pages HTML demandent une
+revalidation, les ressources statiques peuvent rester en cache. Une nouvelle entrée
+ignore tout ancien accord, même si le navigateur restaure sessionStorage ; un retour
+depuis le cache de navigation réinitialise également le tag et la fenêtre. Les liens
+internes gardent le choix du visiteur. Le rechargement interne effectué pour retirer
+un consentement conserve le refus, sans ouvrir immédiatement une nouvelle demande.
+La notice de confidentialité reste accessible sans fenêtre automatique.

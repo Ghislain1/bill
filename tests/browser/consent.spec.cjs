@@ -1,9 +1,10 @@
 const { test, expect } = require('@playwright/test');
 const fs = require('node:fs');
 const path = require('node:path');
-const key = 'bill_physio_consent_v1';
-const version = '2026-09-26-ga4-v1';
-const lifetime = 180 * 86400000;
+const key = 'bill_physio_visit_consent_v2';
+const transitionKey = 'bill_physio_visit_transition_v2';
+const version = '2026-09-26-ga4-visit-v2';
+const lifetime = 30 * 60000;
 const root = path.resolve('dist');
 const policy = require('../../vercel.json').headers[0].headers.find(h => h.key === 'Content-Security-Policy').value;
 const types = { '.html': 'text/html', '.js': 'application/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.ico': 'image/x-icon', '.mp4': 'video/mp4', '.woff2': 'font/woff2' };
@@ -45,7 +46,7 @@ const allow = page => page.getByRole('button', { name: 'Statistik erlauben', exa
 const deny = page => page.getByRole('button', { name: 'Statistik ablehnen', exact: true });
 const settings = page => page.getByRole('button', { name: 'Cookie-Einstellungen', exact: true });
 
-test('no Google request before choice; refusal survives navigation and reload', async ({ page, context }) => {
+test('no Google request before choice; each reload or direct visit asks again', async ({ page, context }) => {
   const seen = await sandboxProduction(context);
   await page.goto('https://bill-physio.de/');
   await expect(page.getByRole('dialog')).toBeVisible();
@@ -53,9 +54,10 @@ test('no Google request before choice; refusal survives navigation and reload', 
   expect(seen.events).toHaveLength(0);
   await deny(page).click();
   await page.reload();
-  await expect(page.getByRole('dialog')).not.toBeVisible();
+  await expect(page.getByRole('dialog')).toBeVisible();
+  await deny(page).click();
   await page.goto('https://bill-physio.de/videos.html');
-  await expect(page.getByRole('dialog')).not.toBeVisible();
+  await expect(page.getByRole('dialog')).toBeVisible();
   expect(seen.scripts).toHaveLength(0);
   expect(seen.events).toHaveLength(0);
   expect(await context.cookies()).toEqual([]);
@@ -74,7 +76,7 @@ test('acceptance enables only analytics and sends one sanitized page view', asyn
   expect(update).toEqual({ analytics_storage: 'granted', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
   const config = queue.find(args => args[0] === 'config')[2];
   expect(config).toMatchObject({ send_page_view: false, allow_google_signals: false, allow_ad_personalization_signals: false, cookie_update: false, page_location: 'https://bill-physio.de/', page_referrer: '' });
-  expect(config.cookie_expires).toBeLessThanOrEqual(lifetime / 1000);
+  expect(config.cookie_expires).toBe(0);
   await settings(page).click();
   await allow(page).click();
   expect(seen.scripts).toHaveLength(1);
@@ -108,7 +110,7 @@ test('privacy notice is readable before deciding; closing the popup refuses anal
   await expect(page.getByRole('dialog')).not.toBeVisible();
   await settings(page).click();
   await page.keyboard.press('Escape');
-  expect(await page.evaluate(key => JSON.parse(localStorage.getItem(key)).analytics, key)).toBe(false);
+  expect(await page.evaluate(key => JSON.parse(sessionStorage.getItem(key)).analytics, key)).toBe(false);
   expect(seen.scripts).toHaveLength(0);
   expect(seen.unexpected).toEqual([]);
 });
@@ -117,7 +119,7 @@ test('expired or legacy acceptance cannot activate Google', async ({ page, conte
   const seen = await sandboxProduction(context);
   await context.addInitScript(({ key, version, lifetime }) => {
     const timestamp = Date.now() - lifetime - 1000;
-    localStorage.setItem(key, JSON.stringify({ version, analytics: true, timestamp, expiresAt: timestamp + lifetime }));
+    sessionStorage.setItem(key, JSON.stringify({ version, analytics: true, timestamp, expiresAt: timestamp + lifetime }));
     localStorage.setItem('Bill_Cookies_82026', 'true');
   }, { key, version, lifetime });
   await page.goto('https://bill-physio.de/');
@@ -129,7 +131,7 @@ test('expired or legacy acceptance cannot activate Google', async ({ page, conte
 
 test('blocked storage still allows an explicit choice for the current page', async ({ page, context }) => {
   const seen = await sandboxProduction(context);
-  await context.addInitScript(() => Object.defineProperty(window, 'localStorage', { get() { throw new Error('Storage blocked'); } }));
+  await context.addInitScript(() => Object.defineProperty(window, 'sessionStorage', { get() { throw new Error('Storage blocked'); } }));
   const errors = [];
   page.on('pageerror', e => errors.push(e.message));
   await page.goto('https://bill-physio.de/');
@@ -149,6 +151,9 @@ test('a refusal in another tab stops an already loaded tag', async ({ page, cont
   await expect.poll(() => seen.events.length).toBe(1);
   const other = await context.newPage();
   await other.goto('https://bill-physio.de/videos.html');
+  await expect(other.getByRole('dialog')).toBeVisible();
+  expect(seen.events).toHaveLength(1);
+  await allow(other).click();
   await expect.poll(() => seen.events.length).toBe(2);
   await settings(other).click();
   await Promise.all([page.waitForEvent('load'), other.waitForEvent('load'), deny(other).click()]);
@@ -162,7 +167,7 @@ test('read-only storage cannot reactivate an old acceptance', async ({ page, con
   const seen = await sandboxProduction(context);
   await context.addInitScript(({ key, version, lifetime }) => {
     const timestamp = Date.now();
-    localStorage.setItem(key, JSON.stringify({ version, analytics: true, timestamp, expiresAt: timestamp + lifetime }));
+    sessionStorage.setItem(key, JSON.stringify({ version, analytics: true, timestamp, expiresAt: timestamp + lifetime }));
     Storage.prototype.setItem = () => { throw new Error('Read-only storage'); };
     Storage.prototype.removeItem = () => { throw new Error('Read-only storage'); };
   }, { key, version, lifetime });
@@ -178,14 +183,15 @@ test('read-only storage cannot reactivate an old acceptance', async ({ page, con
 test('an acceptance expires while the page remains open', async ({ page, context }) => {
   const seen = await sandboxProduction(context);
   await page.clock.install();
-  await context.addInitScript(({ key, version, lifetime }) => {
+  await context.addInitScript(({ key, version, lifetime, transitionKey }) => {
     // Preserve the initial record across the automatic reload after expiry.
     if (!sessionStorage.getItem('consent-expiry-test')) {
       const timestamp = Date.now() - lifetime + 10000;
-      localStorage.setItem(key, JSON.stringify({ version, analytics: true, timestamp, expiresAt: timestamp + lifetime }));
+      sessionStorage.setItem(key, JSON.stringify({ version, analytics: true, timestamp, expiresAt: timestamp + lifetime }));
+      sessionStorage.setItem(transitionKey, JSON.stringify({ path: '/', type: 'link', timestamp: Date.now() }));
       sessionStorage.setItem('consent-expiry-test', 'started');
     }
-  }, { key, version, lifetime });
+  }, { key, version, lifetime, transitionKey });
   await page.goto('https://bill-physio.de/');
   await expect.poll(() => seen.events.length).toBe(1);
   await Promise.all([page.waitForEvent('load'), page.clock.fastForward(11000)]);
@@ -200,7 +206,76 @@ test('acceptance on a preview never sends production measurements', async ({ pag
   page.on('request', req => { if (/google/.test(new URL(req.url()).hostname)) google.push(req.url()); });
   await page.goto('/');
   await allow(page).click();
-  expect(await page.evaluate(key => JSON.parse(localStorage.getItem(key)).analytics, key)).toBe(true);
+  expect(await page.evaluate(key => JSON.parse(sessionStorage.getItem(key)).analytics, key)).toBe(true);
   await expect(page.locator('#bill-analytics')).toHaveCount(0);
   expect(google).toEqual([]);
+});
+
+test('internal links preserve the choice; returning from outside starts a new visit', async ({ page, context }) => {
+  const seen = await sandboxProduction(context);
+  await page.goto('https://bill-physio.de/');
+  await allow(page).click();
+  await expect.poll(() => seen.events.length).toBe(1);
+  await page.locator('footer a[href="datenschutz.html"]').click();
+  await expect.poll(() => seen.events.length).toBe(2);
+  await expect(page.getByRole('dialog')).not.toBeVisible();
+  await page.getByRole('link', { name: 'Bill-Physio · Zur Startseite' }).click();
+  await expect(page.getByRole('dialog')).not.toBeVisible();
+  await expect.poll(() => seen.events.length).toBe(3);
+  await page.goto('about:blank');
+  await page.goBack();
+  await expect(page.getByRole('dialog')).toBeVisible();
+  expect(seen.events).toHaveLength(3);
+  expect(await context.cookies()).toEqual([]);
+});
+
+test('a reopened tab prompts again while browser cookies and persistent storage are preserved', async ({ page, context }) => {
+  const seen = await sandboxProduction(context);
+  await page.goto('https://bill-physio.de/');
+  await allow(page).click();
+  await expect.poll(() => seen.events.length).toBe(1);
+  await page.evaluate(() => {
+    localStorage.setItem('unrelated-setting', 'keep');
+    localStorage.setItem('bill_physio_consent_v1', JSON.stringify({ analytics: true, version: '2026-09-26-ga4-v1' }));
+  });
+  await page.close();
+  const reopened = await context.newPage();
+  await reopened.goto('https://bill-physio.de/');
+  await expect(reopened.getByRole('dialog')).toBeVisible();
+  expect(await reopened.evaluate(() => localStorage.getItem('unrelated-setting'))).toBe('keep');
+  expect(await reopened.evaluate(() => localStorage.getItem('bill_physio_consent_v1'))).toBeNull();
+  expect(seen.events).toHaveLength(1);
+  expect(await context.cookies()).toEqual([]);
+});
+
+test('a persisted pageshow discards a live tag and its prior acceptance', async ({ page, context }) => {
+  const seen = await sandboxProduction(context);
+  await page.goto('https://bill-physio.de/');
+  await allow(page).click();
+  await expect.poll(() => seen.events.length).toBe(1);
+  // Exercise the restoration handler even when the CI browser disables bfcache.
+  await Promise.all([
+    page.waitForEvent('load'),
+    page.evaluate(() => {
+      window.dispatchEvent(new PageTransitionEvent('pagehide', { persisted: true }));
+      window.dispatchEvent(new PageTransitionEvent('pageshow', { persisted: true }));
+    }),
+  ]);
+  await expect(page.getByRole('dialog')).toBeVisible();
+  expect(await page.evaluate(() => window['ga-disable-G-MN2KJN5SSK'])).toBe(true);
+  expect(seen.events).toHaveLength(1);
+  expect(await context.cookies()).toEqual([]);
+});
+
+test('a warm HTTP asset cache never suppresses the popup on a fresh page opening', async ({ page }) => {
+  // No request routing here: real HTTP caching remains enabled.
+  await page.goto('/');
+  await allow(page).click();
+  await page.goto('about:blank');
+  await page.goto('/');
+  await expect(page.getByRole('dialog')).toBeVisible();
+  expect(await page.evaluate(() => performance.getEntriesByType('resource').some(entry =>
+    /\.(js|css)$/.test(new URL(entry.name).pathname) && entry.transferSize === 0 && entry.decodedBodySize > 0
+  ))).toBe(true);
+  expect(await page.evaluate(() => localStorage.length)).toBe(0);
 });

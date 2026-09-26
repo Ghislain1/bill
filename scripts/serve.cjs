@@ -11,6 +11,7 @@ http.createServer((req, res) => {
   if (!filename.startsWith(root + path.sep)) { res.writeHead(403).end(); return; }
   if (!fs.existsSync(filename) || !fs.statSync(filename).isFile()) { res.writeHead(404).end(); return; }
   res.setHeader('Referrer-Policy', 'no-referrer');
+  res.setHeader('Cache-Control', path.extname(filename) === '.html' ? 'public, max-age=0, must-revalidate' : 'public, max-age=3600');
   res.setHeader('Content-Type', types[path.extname(filename)] || 'application/octet-stream');
   res.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self' https://www.googletagmanager.com/gtag/; style-src 'self'; img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com; font-src 'self'; media-src 'self'; connect-src https://*.google-analytics.com https://*.google.com https://www.googletagmanager.com; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'");
   fs.createReadStream(filename).pipe(res);

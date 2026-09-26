@@ -1,7 +1,20 @@
 export const MEASUREMENT_ID = 'G-MN2KJN5SSK';
-export const CONSENT_KEY = 'bill_physio_consent_v1';
-export const CONSENT_VERSION = '2026-09-26-ga4-v1';
-export const CONSENT_LIFETIME = 180 * 24 * 60 * 60 * 1000;
+export const CONSENT_KEY = 'bill_physio_visit_consent_v2';
+export const CONSENT_VERSION = '2026-09-26-ga4-visit-v2';
+export const CONSENT_LIFETIME = 30 * 60 * 1000;
+export const TRANSITION_KEY = 'bill_physio_visit_transition_v2';
+
+// Only a just-clicked internal link, or our own withdrawal reload, continues a
+// visit. Cached pages, restored tabs and manually reopened URLs cannot reuse consent.
+export function continuesVisit(raw, pathname, navigationType, now = Date.now()) {
+    try {
+        const transition = JSON.parse(raw);
+        return transition?.path === pathname && Number.isSafeInteger(transition.timestamp) &&
+            transition.timestamp <= now && now - transition.timestamp < 30000 &&
+            ((transition.type === 'link' && navigationType === 'navigate') ||
+             (transition.type === 'withdrawal' && navigationType === 'reload'));
+    } catch { return false; }
+}
 
 export function createConsent(analytics, now = Date.now()) {
     return { version: CONSENT_VERSION, analytics, timestamp: now, expiresAt: now + CONSENT_LIFETIME };

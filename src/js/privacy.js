@@ -3,7 +3,7 @@ export function removeLegacyConsent(storage) {
     try {
         for (let index = storage.length - 1; index >= 0; index -= 1) {
             const key = storage.key(index);
-            if (/^Bill_Cookies_(?:[0-9]|1[01])\d{4}$/.test(key)) {
+            if (key === 'bill_physio_consent_v1' || /^Bill_Cookies_(?:[0-9]|1[01])\d{4}$/.test(key)) {
                 storage.removeItem(key);
             }
         }

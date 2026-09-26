@@ -26,6 +26,23 @@ test('refusal and acceptance expire equally; future/tampered records fail closed
   }
 });
 
+test('only a recent internal navigation continues a visit; restored or reloaded pages start over', async () => {
+  const { continuesVisit } = await state;
+  const link = { path: '/videos.html', type: 'link', timestamp: now };
+  assert.equal(continuesVisit(JSON.stringify(link), '/videos.html', 'navigate', now + 100), true);
+  for (const navigation of ['reload', 'back_forward', undefined]) {
+    assert.equal(continuesVisit(JSON.stringify(link), '/videos.html', navigation, now + 100), false);
+  }
+  assert.equal(continuesVisit(null, '/videos.html', 'navigate', now), false);
+  assert.equal(continuesVisit('{}', '/videos.html', 'navigate', now), false);
+  assert.equal(continuesVisit(JSON.stringify(link), '/', 'navigate', now), false);
+  assert.equal(continuesVisit(JSON.stringify(link), '/videos.html', 'navigate', now + 30000), false);
+  assert.equal(continuesVisit(JSON.stringify(link), '/videos.html', 'navigate', now - 1), false);
+  const withdrawal = JSON.stringify({ ...link, type: 'withdrawal' });
+  assert.equal(continuesVisit(withdrawal, '/videos.html', 'reload', now), true);
+  assert.equal(continuesVisit(withdrawal, '/videos.html', 'navigate', now), false);
+});
+
 test('statistics use an allowlisted page identity without queries, anchors or referrers', async () => {
   const { analyticsPage } = await state;
   for (const host of ['bill-physio.de', 'www.bill-physio.de']) {

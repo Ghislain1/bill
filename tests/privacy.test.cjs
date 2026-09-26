@@ -15,7 +15,7 @@ function storageFor(entries) {
 
 test('returning visitors: discard every former monthly consent without touching unrelated storage', async () => {
   const { removeLegacyTracking } = await privacyModule;
-  const storage = storageFor({ Bill_Cookies_02026: 'true', Bill_Cookies_82026: 'false', Bill_Cookies_112025: 'true', preference: 'keep' });
+  const storage = storageFor({ Bill_Cookies_02026: 'true', Bill_Cookies_82026: 'false', Bill_Cookies_112025: 'true', bill_physio_consent_v1: '{"analytics":true}', preference: 'keep' });
   const writes = [];
   removeLegacyTracking(storage, { set cookie(value) { writes.push(value); } }, { hostname: 'www.bill-physio.de', protocol: 'https:' });
   assert.deepEqual([...storage.values], [['preference', 'keep']]);

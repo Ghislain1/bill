@@ -9,7 +9,8 @@ for (const route of ['/', '/videos.html', '/datenschutz.html']) {
       if (/\.mp4/.test(request.url())) media.push(request.url());
     });
     page.on('response', response => { if (response.status() >= 400) failed.push(response.url()); });
-    await page.goto(route);
+    const response = await page.goto(route);
+    expect(response.headers()['cache-control']).toContain('must-revalidate');
     await page.evaluate(async () => { await document.fonts.ready; });
     if (route !== '/datenschutz.html') {
       await expect(page.getByRole('dialog')).toBeVisible();
@@ -32,7 +33,8 @@ for (const route of ['/', '/videos.html', '/datenschutz.html']) {
     expect(failed).toEqual([]);
     expect(external).toEqual([]);
     if (route !== '/') expect(media).toEqual([]);
-    expect(await page.evaluate(() => localStorage.length)).toBe(route === '/datenschutz.html' ? 0 : 1);
+    expect(await page.evaluate(() => localStorage.length)).toBe(0);
+    expect(await page.evaluate(() => sessionStorage.length)).toBe(route === '/datenschutz.html' ? 0 : 1);
     expect(await page.context().cookies()).toEqual([]);
   });
 }
@@ -109,6 +111,7 @@ test('patients and applicants can read the relevant privacy information before c
   await page.locator('#kontakt a[href="datenschutz.html"]').click();
   await expect(page.locator('h1')).toHaveText('Datenschutzerklärung');
   await page.goto('/');
+  await page.getByRole('button', { name: 'Statistik ablehnen', exact: true }).click();
   await page.locator('#bewerbung a[href="datenschutz.html#bewerbungen"]').click();
   await expect(page.locator('#bewerbungen')).toBeVisible();
   await expect(page).toHaveURL(/datenschutz\.html#bewerbungen$/);
