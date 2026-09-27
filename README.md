@@ -46,7 +46,30 @@ Git integrations configured in hosting dashboards are separate from GitHub workf
 
 ## Privacy and contact
 
-No Analytics, third-party scripts, remote fonts, browser storage or patient-data form.
+Google Analytics (`G-MN2KJN5SSK`) loads only after an explicit, current statistics
+consent, only on HTTPS bill-physio.de/www.bill-physio.de. No Google request occurs
+before acceptance or after refusal (basic consent mode). Equal accept/refuse buttons,
+a close/escape refusal, and persistent footer settings allow visitors to change their
+choice. Every fresh entry, manual reload, reopened tab or history restoration asks
+again even with a warm cache. Only a just-clicked internal link continues the current
+visit, using a single-use sessionStorage transition marker. Choices last at most
+30 minutes; persistent 180-day and legacy monthly preferences are discarded. GA
+cookies are session cookies. Withdrawal deletes these cookies and reloads a page
+that had loaded the tag. Refusals propagate to other opted-in tabs via BroadcastChannel;
+acceptance never propagates to new tabs. Blocked storage preserves current-page choice.
+HTML is revalidated by the browser; hashed assets can remain cached. The privacy notice
+is readable before a choice, without an automatic modal.
+
+Page views use known public paths, fixed titles and an empty referrer, without URL
+queries or fragments. Ad storage, ad personalization and Google Signals are disabled
+in code. GA property settings, processing terms and server retention still require
+account verification before release; see PRIVACY-RELEASE.md. Preview/local acceptance
+never sends real production statistics. Browser tests intercept all Google traffic.
+
+No patient-data form, remote fonts or advertising integration is present. HTTP and
+HTML Content Security Policies allow only the required Analytics hosts for scripts
+and connections; forms and embedded frames stay blocked. IONOS server-log statistics
+are distinct from browser Analytics and are described in the privacy notice.
 Appointments are arranged by phone; email is for general organizational questions.
 The two practice videos play automatically, muted and looping. Maps is an external link.
 
@@ -55,3 +78,6 @@ Bootstrap 4 CSS is retained to preserve the existing layout; its JavaScript and 
 are not loaded. Dependency versions are locked and checked by npm audit.
 
 See AUDIT-CORRECTIONS.md for evidence and items requiring account/administrative access.
+See PRIVACY-RELEASE.md for the 26 September privacy patch and the confirmed IONOS
+deployment blocker. A successful GitHub check or Vercel preview is not evidence that
+the bill-physio.de production domain has been updated.

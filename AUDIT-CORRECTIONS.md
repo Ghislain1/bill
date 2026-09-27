@@ -1,5 +1,10 @@
 # Corrections — 26 September 2026
 
+**Subsequent consent revision:** the owner requested optional Google Analytics after
+explicit acceptance. See PRIVACY-RELEASE.md for the new accept/refuse dialog, withdrawal
+and release prerequisites. The removal described below records the initial audit fix;
+the current revision loads Analytics only after a valid statistics consent.
+
 ## Implemented
 
 - Removed pre-consent Analytics and the misleading monthly cookie modal. No tracking

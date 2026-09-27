@@ -9,8 +9,14 @@ for (const route of ['/', '/videos.html', '/datenschutz.html']) {
       if (/\.mp4/.test(request.url())) media.push(request.url());
     });
     page.on('response', response => { if (response.status() >= 400) failed.push(response.url()); });
-    await page.goto(route);
+    const response = await page.goto(route);
+    expect(response.headers()['cache-control']).toContain('must-revalidate');
     await page.evaluate(async () => { await document.fonts.ready; });
+    if (route !== '/datenschutz.html') {
+      await expect(page.getByRole('dialog')).toBeVisible();
+      expect((await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze()).violations).toEqual([]);
+      await page.getByRole('button', { name: 'Cookies ablehnen', exact: true }).click();
+    }
     await expect(page.locator('h1')).toBeVisible();
     for (const image of await page.locator('img').all()) {
       await image.scrollIntoViewIfNeeded();
@@ -28,11 +34,14 @@ for (const route of ['/', '/videos.html', '/datenschutz.html']) {
     expect(external).toEqual([]);
     if (route !== '/') expect(media).toEqual([]);
     expect(await page.evaluate(() => localStorage.length)).toBe(0);
+    expect(await page.evaluate(() => sessionStorage.length)).toBe(route === '/datenschutz.html' ? 0 : 1);
     expect(await page.context().cookies()).toEqual([]);
   });
 }
 test('contact links and mobile menu work', async ({ page }, testInfo) => {
   await page.goto('/');
+  const consent = page.getByRole('button', { name: 'Cookies ablehnen', exact: true });
+  if (await consent.isVisible()) await consent.click();
   if (testInfo.project.name === 'mobile') {
     const toggle = page.locator('.navbar-toggler');
     await toggle.click();
@@ -63,6 +72,8 @@ test('content remains usable without JavaScript', async ({ browser, baseURL }) =
 });
 test('videos play automatically without play buttons', async ({ page }) => {
   await page.goto('/');
+  const consent = page.getByRole('button', { name: 'Cookies ablehnen', exact: true });
+  if (await consent.isVisible()) await consent.click();
   await expect(page.locator('[data-video-toggle]')).toHaveCount(0);
   for (const id of ['home-video', 'about-video']) {
     const video = page.locator('#' + id);
@@ -75,4 +86,33 @@ test('videos play automatically without play buttons', async ({ page }) => {
       await expect.poll(() => video.evaluate(el => el.currentTime)).toBeGreaterThan(0);
     }
   }
+});
+
+test('legacy analytics cookies and consent are cleared on return visits', async ({ page, context }) => {
+  await context.addCookies(['_ga', '_ga_MN2KJN5SSK'].map(name => ({ name, value: 'legacy-test-only', url: 'http://127.0.0.1:4200' })));
+  await context.addInitScript(() => {
+    localStorage.setItem('Bill_Cookies_82026', 'true');
+    localStorage.setItem('unrelated-setting', 'keep');
+  });
+  await page.goto('/');
+  const consent = page.getByRole('button', { name: 'Cookies ablehnen', exact: true });
+  if (await consent.isVisible()) await consent.click();
+  await expect(page.locator('#kontakt a[href="tel:+4967197029941"]')).toBeVisible();
+  expect(await page.evaluate(() => localStorage.getItem('Bill_Cookies_82026'))).toBeNull();
+  expect(await page.evaluate(() => localStorage.getItem('unrelated-setting'))).toBe('keep');
+  expect(await context.cookies()).toEqual([]);
+  await expect(page.locator('form, #emailSuccessToast, #cookiesBannerModal')).toHaveCount(0);
+});
+
+test('patients and applicants can read the relevant privacy information before contact', async ({ page }) => {
+  await page.goto('/');
+  const consent = page.getByRole('button', { name: 'Cookies ablehnen', exact: true });
+  if (await consent.isVisible()) await consent.click();
+  await page.locator('#kontakt a[href="datenschutz.html"]').click();
+  await expect(page.locator('h1')).toHaveText('Datenschutzerklärung');
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Cookies ablehnen', exact: true }).click();
+  await page.locator('#bewerbung a[href="datenschutz.html#bewerbungen"]').click();
+  await expect(page.locator('#bewerbungen')).toBeVisible();
+  await expect(page).toHaveURL(/datenschutz\.html#bewerbungen$/);
 });

@@ -1,3 +1,7 @@
+import { initializeConsent } from './consent.js';
+
+initializeConsent();
+
 const navigation = document.getElementById('navbar-toggle');
 const toggle = document.querySelector('.navbar-toggler');
 function closeNavigation() {
