@@ -58,7 +58,9 @@ cookies are session cookies. Withdrawal deletes these cookies and reloads a page
 that had loaded the tag. Refusals propagate to other opted-in tabs via BroadcastChannel;
 acceptance never propagates to new tabs. Blocked storage preserves current-page choice.
 HTML is revalidated by the browser; hashed assets can remain cached. The privacy notice
-is readable before a choice, without an automatic modal.
+and direct Impressum links are readable before a choice, without an automatic modal.
+Both are linked from the cookie dialog. Opening either notice does not accept or
+refuse cookies; footer settings remain available while reading the notices.
 
 Page views use known public paths, fixed titles and an empty referrer, without URL
 queries or fragments. Ad storage, ad personalization and Google Signals are disabled

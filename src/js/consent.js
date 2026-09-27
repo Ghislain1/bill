@@ -30,7 +30,7 @@ export function initializeConsent() {
         <p id="cookie-description">Dürfen wir Google Analytics für freiwillige Besuchsstatistiken verwenden? Damit erfahren wir, wie unsere Website genutzt wird, und können sie verbessern.</p>
         <p>Bei Zustimmung erhält Google Ireland Limited unter anderem Seitenaufrufe, Geräteinformationen und eine Cookie-Kennung. Eine Verarbeitung in den USA ist möglich. Ihre Auswahl gilt nur für diesen Besuch, höchstens 30 Minuten. Beim erneuten Öffnen fragen wir wieder.</p>
         <p>Ohne Ihre Zustimmung laden wir Google Analytics nicht. Die Website bleibt nutzbar. Sie können Ihre Einwilligung jederzeit über <strong>Cookie-Einstellungen</strong> widerrufen.</p>
-        <p><a href="datenschutz.html#statistik">Details in der Datenschutzerklärung</a></p>
+        <p><a href="datenschutz.html#statistik">Details in der Datenschutzerklärung</a> · <a href="index.html#impressum" data-impressum-link>Impressum</a></p>
         <p class="cookie-status" aria-live="polite"></p>
         <div class="cookie-actions">
             <button type="button" class="cookie-choice" data-consent="deny">Cookies ablehnen</button>
@@ -38,6 +38,11 @@ export function initializeConsent() {
         </div>`;
     document.body.append(dialog);
     const status = dialog.querySelector('.cookie-status');
+
+    function isReadingLegalNotice() {
+        return window.location.pathname.endsWith('/datenschutz.html') ||
+            (['/', '/index.html'].includes(window.location.pathname) && window.location.hash === '#impressum');
+    }
 
     function readChoice() {
         if (storage) {
@@ -116,7 +121,7 @@ export function initializeConsent() {
         if (choice?.analytics === true) startAnalytics();
         else stopAnalytics();
         scheduleExpiry();
-        if (!choice && !window.location.pathname.endsWith('/datenschutz.html')) openSettings();
+        if (!choice && !isReadingLegalNotice()) openSettings();
     }
 
     function choose(analytics, broadcast = true) {
@@ -139,6 +144,9 @@ export function initializeConsent() {
     dialog.querySelector('[data-consent="allow"]').addEventListener('click', () => choose(true));
     dialog.querySelector('[data-consent="deny"]').addEventListener('click', () => choose(false));
     dialog.querySelector('.cookie-close').addEventListener('click', () => choose(false));
+    // Reading the Impressum is neither acceptance nor refusal. Also close when
+    // the link targets the current document, where no initialization runs again.
+    dialog.querySelector('[data-impressum-link]').addEventListener('click', () => dialog.close());
     dialog.addEventListener('cancel', event => { event.preventDefault(); choose(false); });
     document.querySelectorAll('[data-cookie-settings]').forEach(button => {
         button.hidden = false;
@@ -170,7 +178,10 @@ export function initializeConsent() {
         try { storage?.removeItem(CONSENT_KEY); storage?.removeItem(TRANSITION_KEY); } catch { storage = undefined; }
         stopAnalytics();
         scheduleExpiry();
-        if (!window.location.pathname.endsWith('/datenschutz.html')) openSettings();
+        if (!isReadingLegalNotice()) openSettings();
+    });
+    window.addEventListener('hashchange', () => {
+        if (isReadingLegalNotice() && dialog.open) dialog.close();
     });
     document.addEventListener('visibilitychange', () => {
         if (document.visibilityState === 'visible') refreshChoice();
@@ -178,6 +189,6 @@ export function initializeConsent() {
     if (choice?.analytics === true) startAnalytics();
     else removeAnalyticsCookies(document, window.location);
     scheduleExpiry();
-    // The legal notice must remain readable before making a choice.
-    if (!choice && !window.location.pathname.endsWith('/datenschutz.html')) openSettings();
+    // Both legal notices must remain readable before making a choice.
+    if (!choice && !isReadingLegalNotice()) openSettings();
 }
