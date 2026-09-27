@@ -110,7 +110,57 @@ test('privacy notice is readable before deciding; closing the popup refuses anal
   await settings(page).click();
   await page.keyboard.press('Escape');
   expect(await page.evaluate(key => JSON.parse(sessionStorage.getItem(key)).analytics, key)).toBe(false);
+  await page.locator('footer a[href="index.html#impressum"]').click();
+  await expect(page.locator('#impressum-title')).toBeInViewport();
+  await expect(page.getByRole('dialog')).not.toBeVisible();
+  expect(await page.evaluate(key => JSON.parse(sessionStorage.getItem(key)).analytics, key)).toBe(false);
   expect(seen.scripts).toHaveLength(0);
+  expect(seen.unexpected).toEqual([]);
+});
+
+for (const route of ['/', '/index.html', '/videos.html']) {
+  test(`Impressum link from the popup on ${route} does not record a cookie choice`, async ({ page, context }) => {
+    const seen = await sandboxProduction(context);
+    await page.goto('https://bill-physio.de' + route);
+    await page.getByRole('dialog').getByRole('link', { name: 'Impressum', exact: true }).click();
+    await expect(page).toHaveURL('https://bill-physio.de/index.html#impressum');
+    await expect(page.getByRole('dialog')).not.toBeVisible();
+    await expect(page.locator('#impressum-title')).toBeInViewport();
+    await expect(page.locator('#impressum')).toBeFocused();
+    expect(await page.evaluate(key => sessionStorage.getItem(key), key)).toBeNull();
+
+    // Reopening settings on the same fragment must not trap visitors in the modal.
+    await settings(page).click();
+    await page.getByRole('dialog').getByRole('link', { name: 'Impressum', exact: true }).click();
+    await expect(page.getByRole('dialog')).not.toBeVisible();
+    await expect(page.locator('#impressum-title')).toBeInViewport();
+    expect(await page.evaluate(key => sessionStorage.getItem(key), key)).toBeNull();
+    expect(await context.cookies()).toEqual([]);
+    expect(seen.scripts).toHaveLength(0);
+    expect(seen.events).toHaveLength(0);
+    expect(seen.unexpected).toEqual([]);
+  });
+}
+
+test('direct Impressum visits remain readable after reload, tab return and history restoration', async ({ page, context }) => {
+  const seen = await sandboxProduction(context);
+  for (const route of ['/#impressum', '/index.html#impressum']) {
+    await page.goto('https://bill-physio.de' + route);
+    await expect(page.getByRole('dialog')).not.toBeVisible();
+    await expect(page.locator('#impressum-title')).toBeInViewport();
+    await page.reload();
+    await expect(page.getByRole('dialog')).not.toBeVisible();
+    await page.evaluate(() => {
+      window.dispatchEvent(new PageTransitionEvent('pageshow', { persisted: true }));
+      document.dispatchEvent(new Event('visibilitychange'));
+    });
+    await expect(page.getByRole('dialog')).not.toBeVisible();
+    await expect(page.locator('#impressum-title')).toBeInViewport();
+    expect(await page.evaluate(key => sessionStorage.getItem(key), key)).toBeNull();
+  }
+  expect(await context.cookies()).toEqual([]);
+  expect(seen.scripts).toHaveLength(0);
+  expect(seen.events).toHaveLength(0);
   expect(seen.unexpected).toEqual([]);
 });
 

@@ -150,4 +150,53 @@ ignore tout ancien accord, même si le navigateur restaure sessionStorage ; un r
 depuis le cache de navigation réinitialise également le tag et la fenêtre. Les liens
 internes gardent le choix du visiteur. Le rechargement interne effectué pour retirer
 un consentement conserve le refus, sans ouvrir immédiatement une nouvelle demande.
-La notice de confidentialité reste accessible sans fenêtre automatique.
+La notice de confidentialité et l'accès direct à l'Impressum restent accessibles
+sans fenêtre automatique.
+
+## Étape 2 — accès à l'Impressum et compléments de notice, 27 septembre 2026
+
+À la demande de l'exploitant, cette intervention porte uniquement sur l'étape 2
+de l'évaluation. Base : `main`, commit `7be56d70365132c48a51380e8d2c679fb0cb1500`.
+Les modifications de présentation déjà présentes dans cette base sont conservées.
+
+- Un lien direct vers `index.html#impressum` figure dans la fenêtre cookies.
+  Il ferme la fenêtre sans enregistrer de consentement ou de refus. La section
+  dispose d'une cible de focus au clavier. Un accès direct, un rechargement ou
+  une restauration de cette section n'ouvre pas automatiquement la fenêtre.
+- Les réglages restent accessibles depuis le pied de page. Les boutons de choix,
+  la durée de 30 minutes, le retour de la demande lors d'une nouvelle visite et
+  les règles d'activation de Google Analytics conservent leur fonctionnement.
+- La notice précise les identités publiques des prestataires, les catégories de
+  données de contact, les bases supplémentaires pour les données de santé
+  (§ 22 BDSG et secret professionnel), la distinction entre les traitements de
+  Vercel pour ses clients et ceux en propre, l'obtention des garanties de transfert,
+  les droits des personnes, le délai de réponse et le recours auprès du LfDI.
+- Les tests navigateur couvrent le lien depuis chaque page avec fenêtre automatique,
+  sa réouverture sur la même ancre, l'absence de choix implicite ou d'appel Google,
+  les retours de navigation et la conservation d'un refus préexistant. Ils utilisent
+  le build réel avec les requêtes externes interceptées, sur ordinateur et mobile.
+
+**Informations dépendantes de l'étape 3 :** les durées effectivement configurées
+chez Google et chez les prestataires, les contrats de sous-traitance, les mécanismes
+de transfert applicables au compte et l'éventuelle désignation d'un DPO restent à
+confirmer. Les adresses publiques des fournisseurs ne prouvent pas l'identité du
+cocontractant dans un compte donné. Le DPA publié par Vercel indique s'appliquer
+aux clients Pro et Enterprise : vérifier le plan et les clauses effectivement
+applicables avant de présenter cet accord comme acquis. La notice ne prétend pas
+qu'un contrat a été signé ni qu'une durée inconnue a été vérifiée. Ses critères
+généraux de conservation doivent être précisés dès réception de ces informations.
+
+Aucun réglage de compte, fournisseur, formulaire, secret IONOS ou déploiement de
+production n'est modifié par cette étape. La branche et son aperçu Vercel permettent
+la revue ; la mise en ligne sur bill-physio.de et sa vérification restent distinctes.
+
+Sources complémentaires consultées le 27 septembre 2026 :
+
+- [DSK — orientation services numériques, notamment accès aux mentions légales, § 121](https://www.datenschutzkonferenz-online.de/media/oh/OH_Digitale_Dienste.pdf)
+- [§ 22 BDSG — données sensibles et mesures de protection](https://www.gesetze-im-internet.de/bdsg_2018/__22.html)
+- [§ 203 StGB — secret professionnel](https://www.gesetze-im-internet.de/stgb/__203.html)
+- [IONOS — identité du fournisseur](https://www.ionos.de/impressum)
+- [Google — identité et informations de confidentialité](https://policies.google.com/privacy?hl=de)
+- [Vercel — Data Processing Addendum et périmètre contractuel](https://vercel.com/legal/dpa)
+- [LfDI Rheinland-Pfalz — contact](https://www.datenschutz.rlp.de/service/kontakt)
+- [LfDI Rheinland-Pfalz — plainte](https://www.datenschutz.rlp.de/themen/online-services/beschwerdeformular)
