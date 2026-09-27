@@ -22,6 +22,12 @@ document.addEventListener('keydown', (event) => {
     }
 });
 const backToTop = document.getElementById('back-to-top-button');
+const headerNavigation = document.querySelector('nav.navbar');
+if (headerNavigation) {
+    const syncHeaderHeight = () => document.documentElement.style.setProperty('--header-height', `${headerNavigation.getBoundingClientRect().height}px`);
+    syncHeaderHeight();
+    new ResizeObserver(syncHeaderHeight).observe(headerNavigation);
+}
 function updateScroll() {
     document.querySelector('nav.navbar')?.classList.toggle('bg-white', window.scrollY > 70);
     backToTop?.classList.toggle('d-inline', window.scrollY > 70);
