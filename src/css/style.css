@@ -1,3 +1,13 @@
+:root {
+    --color-primary: #176b36;
+    --color-primary-dark: #04542d;
+    --color-accent: #ff7a00;
+    --color-text: #212529;
+    --color-text-muted: #6c757d;
+    --color-bg-light: #f8f9fa;
+    --color-bg-dark: #343a40;
+}
+
 body {
     position: relative;
 }
@@ -35,7 +45,7 @@ nav {
 
 a .text-white:hover,
 a.text-white:hover {
-    color: #ff7a00 !important;
+    color: var(--color-accent) !important;
     text-decoration: none;
 }
 
@@ -62,7 +72,7 @@ a.text-white:hover {
 .navbar.navbar-dark button:hover,
 .navbar.navbar-dark button:focus,
 .navbar.navbar-dark .nav-link:hover {
-    color: #ff7a00;
+    color: var(--color-accent);
 
 }
 
@@ -119,7 +129,7 @@ nav {
 
 @media (max-width: 768px) {
     #home p {
-        color: #212529 !important;
+        color: var(--color-text) !important;
 
     }
 }
@@ -240,7 +250,7 @@ section {
 }
 
 .navbar {
-    background-color: #04542d;
+    background-color: var(--color-primary-dark);
 }
 
 .navbar-brand {
@@ -277,17 +287,17 @@ section {
 }
 
 .navbar.bg-white .navbar-brand-tagline {
-    color: #04542d;
+    color: var(--color-primary-dark);
     font-weight: 700;
 }
 
 .navbar.bg-white .navbar-nav .nav-link {
-    color: #04542d;
+    color: var(--color-primary-dark);
     font-weight: 700;
 }
 
 .navbar-dark .navbar-nav .nav-link {
-    color: #f8f9fa;
+    color: var(--color-bg-light);
 }
 
 .navbar .navbar-nav .nav-link:focus-visible,
@@ -389,30 +399,30 @@ button:focus-visible {
 }
 
 .text-success {
-    color: #176b36 !important;
+    color: var(--color-primary) !important;
 }
 
 .btn-success {
-    background-color: #176b36;
-    border-color: #176b36;
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
 }
 
 .btn-outline-success {
-    color: #176b36;
-    border-color: #176b36;
+    color: var(--color-primary);
+    border-color: var(--color-primary);
 }
 
 .btn-success:hover,
 .btn-success:focus-visible,
 .btn-outline-success:hover,
 .btn-outline-success:focus-visible {
-    color: #000;
-    background-color: #ff7a00;
-    border-color: #ff7a00;
+    color: var(--color-text);
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
 }
 
 #angebote>.container>.row:first-child .text-success {
-    color: #ff7a00 !important;
+    color: var(--color-accent) !important;
 }
 
 #angebote>.container>.row:first-child .lead {
@@ -460,7 +470,7 @@ footer {
     z-index: 2000;
     background: white;
     padding: 12px;
-    color: #176b36;
+    color: var(--color-primary);
 }
 
 .skip-link:focus {
@@ -478,7 +488,7 @@ footer {
 }
 
 a {
-    color: #176b36;
+    color: var(--color-primary);
 }
 
 p a:not(.btn),
@@ -493,7 +503,7 @@ a:not(.btn):focus-visible,
 .navbar.navbar-dark .navbar-nav .nav-link:focus-visible,
 .navbar.navbar-dark .navbar-toggler:hover,
 .navbar.navbar-dark .navbar-toggler:focus-visible {
-    color: #ff7a00 !important;
+    color: var(--color-accent) !important;
 }
 
 @media (min-width: 1200px) {
