@@ -30,13 +30,17 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: v22.x
+          node-version: 22
+          cache: npm
 
       - name: Build Node assets
         env:
           CI: true
           SITE_URL: ${{ inputs.site-url }}
-        run: npm install
+        run: npm ci
+
+      - name: Regression tests
+        run: npm test
 
       - name: Run script
 # uncomment the following lines if you want to add environment variables for this step
@@ -45,7 +49,13 @@ jobs:
 #          MY_SECRET_ENV_VAR: ${{ secrets.MY_SECRET }} # here you can find information how to create secrets: https://docs.github.com/en/actions/security-guides/encrypted-secrets
         run: npm run build
 
-# Please do not touch the following action
+      - name: Install test browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Browser regression tests
+        run: npm run test:browser
+
+# Upload only after every check passed
       - name: Store deployment content
         uses: ionos-deploy-now/artifact-action@v1
         with:

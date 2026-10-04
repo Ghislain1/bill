@@ -3,23 +3,33 @@
   "version": "1.0.0",
   "description": "Vitrine page for bill compagny",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node --test tests/*.test.cjs",
     "help": "parcel help watch",
     "dev": "parcel serve  src/index.html --port 4200",
     "start": "parcel src/index.html --open",
-    "build": "parcel build src/index.html --dist-dir dist --public-url ./"
+    "build": "parcel build src/index.html src/videos.html src/datenschutz.html --dist-dir dist --public-url ./ && node scripts/copy-static.cjs",
+    "test:browser": "playwright test"
   },
   "keywords": [],
   "author": "Ghislain Zeleu",
   "license": "ISC",
   "devDependencies": {
-    "@popperjs/core": "^2.11.8",
-    "bootstrap": "^4.6.2",
-    "live-server": "^1.2.0",
+    "@axe-core/playwright": "^4.11.1",
+    "@parcel/packager-raw-url": "^2.16.4",
+    "@parcel/transformer-jsonld": "^2.16.4",
+    "@playwright/test": "^1.58.2",
+    "bootstrap": "4.6.2",
     "parcel": "^2.16.0"
   },
   "dependencies": {
-    "aos": "^3.0.0-beta.6",
-    "baseline-browser-mapping": "^2.10.10"
-  }
+    "simple-line-icons": "2.5.5"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "browserslist": [
+    "> 0.5%",
+    "last 2 versions",
+    "not dead"
+  ]
 }

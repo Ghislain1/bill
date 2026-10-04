@@ -1,44 +1,21 @@
-name: Deploy to Netlify
-
+name: Site checks
 on:
+  pull_request:
   push:
-    branches:
-      - main  # or your deployment branch
-
+    branches: [main]
+permissions:
+  contents: read
 jobs:
-  build-and-deploy:
+  verify:
     runs-on: ubuntu-latest
-
     steps:
-      # Checkout your code
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      # Optional: if you use npm for build (e.g., SCSS compilation)
-      - name: Install dependencies
-        run: |
-          if [ -f package.json ]; then
-            npm install
-          fi
-
-      # Optional: run build step (if applicable)
-      - name: Build project
-        run: |
-          if [ -f package.json ]; then
-            npm run build || echo "No build script, skipping..."
-          fi
-
-      # Deploy to Netlify
-      - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          publish-dir: ./dist  # or ./public, ./build, etc.
-          production-branch: main
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Deployed via GitHub Actions 🚀"
-          enable-pull-request-comment: false
-          enable-commit-comment: true
-          overwrites-pull-request-comment: true
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:browser

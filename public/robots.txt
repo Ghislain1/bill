@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://bill-physio.de/sitemap.xml
