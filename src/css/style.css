@@ -269,7 +269,9 @@ section { padding: 90px 0; scroll-margin-top: var(--navigation-offset); }
     background-color: #ff7a00;
     border-color: #ff7a00;
 }
-#angebote > .container > .row:first-child .text-success, #impressum .text-success, footer .text-success { color: #84dfa3 !important; }
+#angebote > .container > .row:first-child .text-success { color: #ff7a00 !important; }
+#angebote > .container > .row:first-child .lead { color: #fff !important; font-weight: 700; font-size: calc(1.25rem + 2px); }
+#impressum .text-success, footer .text-success { color: #84dfa3 !important; }
 .fab-container { right: 16px; bottom: 16px; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
 .fab-container { pointer-events: none; }
 .fab-container a { pointer-events: auto; }
